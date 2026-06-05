@@ -1,0 +1,104 @@
+<div class="step">
+  <p class="eyebrow">Step 05 of 05 — Final</p>
+  <h1>How can we <span class="accent">reach you?</span></h1>
+  <p class="sub">We'll respond within 24 business hours.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+    <!-- Full Name -->
+    <div class="field" [class.invalid]="isInvalid('fullName')">
+      <label for="fullName">Full Name</label>
+      <input
+        id="fullName"
+        type="text"
+        formControlName="fullName"
+        placeholder="Thembi Hadebe"
+        autocomplete="name" />
+      @if (isInvalid('fullName')) {
+        <p class="error">
+          @if (form.get('fullName')?.errors?.['required']) {
+            Please enter your name.
+          } @else {
+            That's a bit short — please use your full name.
+          }
+        </p>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="field" [class.invalid]="isInvalid('email')">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="thembi@example.co.za"
+        autocomplete="email" />
+      @if (isInvalid('email')) {
+        <p class="error">
+          @if (form.get('email')?.errors?.['required']) {
+            We'll need your email to reply.
+          } @else {
+            That doesn't look like a valid email.
+          }
+        </p>
+      }
+    </div>
+
+    <!-- Phone -->
+    <div class="field">
+      <label for="phone">Phone (Optional)</label>
+      <input
+        id="phone"
+        type="tel"
+        formControlName="phone"
+        placeholder="+27 82 000 0000"
+        autocomplete="tel" />
+    </div>
+
+    <!-- Notes -->
+    <div class="field">
+      <label for="notes">Anything else? (Optional)</label>
+      <textarea
+        id="notes"
+        formControlName="notes"
+        rows="3"
+        placeholder="Anything we should know upfront — context, preferences, hard deadlines."></textarea>
+    </div>
+
+    <!-- Consent -->
+    <div class="consent" [class.invalid]="isInvalid('consentGiven')">
+      <input type="checkbox" id="consentGiven" formControlName="consentGiven" />
+      <label for="consentGiven">
+        I agree that RogueTech may contact me about my enquiry. POPIA compliant — read our
+        <a href="/privacy" target="_blank">privacy notice</a> for details.
+      </label>
+    </div>
+    @if (isInvalid('consentGiven')) {
+      <p class="error consent-error">You'll need to agree before we can contact you.</p>
+    }
+
+    <!-- Submission error from API -->
+    @if (facade.error()) {
+      <div class="api-error">
+        <p>{{ facade.error() }}</p>
+      </div>
+    }
+
+    <div class="nav-row">
+      <button
+        type="button"
+        class="rt-btn-secondary"
+        (click)="back()"
+        [disabled]="facade.isSubmitting()">
+        Back
+      </button>
+      <button
+        type="submit"
+        class="rt-btn"
+        [disabled]="form.invalid || facade.isSubmitting()">
+        {{ facade.isSubmitting() ? 'Submitting…' : 'Submit Enquiry' }}
+      </button>
+    </div>
+  </form>
+</div>

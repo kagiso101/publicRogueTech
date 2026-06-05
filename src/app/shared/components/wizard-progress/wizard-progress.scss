@@ -1,0 +1,22 @@
+@use '../../../styles/tokens' as *;
+
+.progress {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.pip {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: var(--rt-transition);
+
+  &.done {
+    background: rgba(204, 0, 0, 0.4);
+  }
+
+  &.active {
+    background: var(--rt-red);
+  }
+}

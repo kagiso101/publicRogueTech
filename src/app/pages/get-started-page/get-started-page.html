@@ -1,0 +1,33 @@
+<main class="wizard">
+  <header class="wizard-header">
+    <button class="back-home" (click)="goHome()">
+      <span aria-hidden="true">←</span> Back to RogueTech
+    </button>
+  </header>
+
+  <div class="wizard-container">
+    @if (facade.hasSubmitted()) {
+    <!-- ─── OUTCOME ─── -->
+    <section class="wizard-step">
+      @if (facade.needsCalendar()) {
+      <rt-calendar-booking />
+      } @else {
+      <rt-confirmation />
+      }
+    </section>
+    } @else {
+    <!-- ─── WIZARD FLOW ─── -->
+    <rt-wizard-progress [current]="facade.currentStep()" />
+
+    <section class="wizard-step">
+      @switch (facade.currentStep()) {
+      @case (1) { <rt-step1-project-type /> }
+      @case (2) { <rt-step2-business /> }
+      @case (3) { <rt-step3-details /> }
+      @case (4) { <rt-step4-budget-timeline /> }
+      @case (5) { <rt-step5-contact /> }
+      }
+    </section>
+    }
+  </div>
+</main>

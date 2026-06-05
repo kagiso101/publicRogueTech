@@ -1,0 +1,77 @@
+<nav [class.scrolled]="scrolled()">
+
+  <a routerLink="/" (click)="closeMenu()">
+    <img class="logo" src="/images/logos/roguetech-final-logo.png" alt="RogueTech">
+  </a>
+
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/services" routerLinkActive="active" #servicesLink="routerLinkActive"
+        [class.active]="servicesLink.isActive">
+        Services
+      </a>
+    </li>
+    <li>
+      <a routerLink="/pricing" routerLinkActive="active" #pricingLink="routerLinkActive"
+        [class.active]="pricingLink.isActive">
+        Pricing
+      </a>
+    </li>
+    <li>
+      <a routerLink="/process" routerLinkActive="active" #processLink="routerLinkActive"
+        [class.active]="processLink.isActive">
+        How it Works
+      </a>
+    </li>
+    <li>
+      <a routerLink="/faq" routerLinkActive="active" #faqLink="routerLinkActive" [class.active]="faqLink.isActive">
+        FAQ
+      </a>
+    </li>
+  </ul>
+
+  <div class="nav-right">
+    <a routerLink="/get-started" class="btn-primary">Get Started</a>
+  </div>
+
+  <button class="hamburger" (click)="toggleMenu()" aria-label="Toggle navigation">
+    <span [class.open]="menuOpen()"></span>
+    <span [class.open]="menuOpen()"></span>
+    <span [class.open]="menuOpen()"></span>
+  </button>
+
+</nav>
+
+@if (menuOpen()) {
+<div class="mobile-menu" (click)="closeMenu()">
+  <ul>
+    <li>
+      <a routerLink="/services" routerLinkActive="active" #servicesMobileLink="routerLinkActive"
+        [class.active]="servicesMobileLink.isActive" (click)="closeMenu()">
+        Services
+      </a>
+    </li>
+    <li>
+      <a routerLink="/pricing" routerLinkActive="active" #pricingMobileLink="routerLinkActive"
+        [class.active]="pricingMobileLink.isActive" (click)="closeMenu()">
+        Pricing
+      </a>
+    </li>
+    <li>
+      <a routerLink="/process" routerLinkActive="active" #processMobileLink="routerLinkActive"
+        [class.active]="processMobileLink.isActive" (click)="closeMenu()">
+        How it Works
+      </a>
+    </li>
+    <li>
+      <a routerLink="/faq" routerLinkActive="active" #faqMobileLink="routerLinkActive"
+        [class.active]="faqMobileLink.isActive" (click)="closeMenu()">
+        FAQ
+      </a>
+    </li>
+    <li>
+      <a routerLink="/get-started" class="btn-primary" (click)="closeMenu()">Get Started</a>
+    </li>
+  </ul>
+</div>
+}

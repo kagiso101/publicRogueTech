@@ -1,0 +1,8 @@
+<div class="marquee-wrap">
+  <div class="marquee">
+    @for (item of allItems; track item + $index) {
+      <span class="marquee-item">{{ item }}</span>
+      <span class="marquee-sep">•</span>
+    }
+  </div>
+</div>

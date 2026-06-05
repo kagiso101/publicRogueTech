@@ -1,0 +1,226 @@
+<!-- ─── HERO ─── -->
+<section class="process-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+
+  <div class="hero-inner">
+
+    <div class="hero-content">
+      <div class="hero-eyebrow rt-reveal">How It Works</div>
+      <h1 class="hero-title rt-reveal">
+        From signed contract<br><span>to live and yours.</span>
+      </h1>
+      <p class="hero-sub rt-reveal">
+        Nine clear phases. Real visibility at every step. You approve the
+        important moments and you own the result. No vague timelines, no
+        agency black holes, no surprises at handover.
+      </p>
+
+      <div class="hero-stats rt-reveal">
+        <div class="stat-block">
+          <div class="stat-num">9</div>
+          <div class="stat-label">Defined<br>Phases</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Approval<br>Gates</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Owned<br>By You</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right-side timeline visualizer -->
+    <div class="hero-timeline rt-reveal rt-delay-2" aria-hidden="true">
+
+      <div class="timeline-header">
+        <span class="timeline-dot"></span>
+        Project Lifecycle
+      </div>
+
+      <div class="timeline-track">
+        <div class="track-line"></div>
+        <div class="track-progress"></div>
+
+        <div class="track-stage stage-1">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">01</span>
+            <span class="stage-name">Discovery</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-2 has-approval">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">02</span>
+            <span class="stage-name">Proposal</span>
+            <span class="stage-tag">Sign</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-3">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">03</span>
+            <span class="stage-name">Kickoff</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-4 has-approval">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">04</span>
+            <span class="stage-name">Design</span>
+            <span class="stage-tag">Approve</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-5 has-approval">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">05</span>
+            <span class="stage-name">Build</span>
+            <span class="stage-tag">Milestones</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-6 has-approval">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">06</span>
+            <span class="stage-name">QA Review</span>
+            <span class="stage-tag">Approve</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-7">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">07</span>
+            <span class="stage-name">Launch</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-8">
+          <div class="stage-node"></div>
+          <div class="stage-label">
+            <span class="stage-num">08</span>
+            <span class="stage-name">Handover</span>
+          </div>
+        </div>
+
+        <div class="track-stage stage-9">
+          <div class="stage-node node-end"></div>
+          <div class="stage-label">
+            <span class="stage-num">09</span>
+            <span class="stage-name">Optional Support</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-legend">
+        <div class="legend-item">
+          <span class="legend-marker"></span>
+          Standard phase
+        </div>
+        <div class="legend-item">
+          <span class="legend-marker approval"></span>
+          Your approval required
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── JOURNEY ─── -->
+<section class="journey-section">
+  <div class="journey-header rt-reveal">
+    <div class="section-eyebrow">The Journey</div>
+    <h2 class="section-title">
+      Every step,<br><span>fully visible.</span>
+    </h2>
+    <p class="section-body">
+      The full client journey from first conversation to launch and beyond.
+      Each phase has a clear purpose, a defined timeline, and where
+      relevant — your approval before we proceed.
+    </p>
+  </div>
+
+  <div class="journey-timeline">
+    @for (phase of phases; track phase.num; let i = $index;
+          let isLast = $last) {
+      <div class="phase rt-reveal"
+           [style.transition-delay]="(i * 0.04) + 's'">
+
+        <div class="phase-marker">
+          <div class="phase-num">{{ phase.num }}</div>
+          @if (!isLast) {
+            <div class="phase-line"></div>
+          }
+        </div>
+
+        <div class="phase-content">
+          <div class="phase-meta">
+            <span class="phase-group">{{ phase.group }}</span>
+            <span class="phase-duration">{{ phase.duration }}</span>
+            @if (phase.approval) {
+              <span class="phase-approval">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="3"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                Your Approval
+              </span>
+            }
+          </div>
+
+          <h3 class="phase-title">{{ phase.title }}</h3>
+          <p class="phase-description">{{ phase.description }}</p>
+
+          <ul class="phase-highlights">
+            @for (highlight of phase.highlights; track highlight) {
+              <li>{{ highlight }}</li>
+            }
+          </ul>
+        </div>
+
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ─── DIFFERENTIATORS ─── -->
+<section class="differentiators-section">
+  <div class="diff-header rt-reveal">
+    <div class="section-eyebrow">Why It Works</div>
+    <h2 class="section-title">
+      What makes our process<br><span>different.</span>
+    </h2>
+  </div>
+
+  <div class="diff-grid">
+    @for (item of differentiators; track item.title; let i = $index) {
+      <article class="diff-card rt-reveal"
+               [style.transition-delay]="(i * 0.08) + 's'">
+        <div class="diff-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path [attr.d]="item.icon"/>
+          </svg>
+        </div>
+        <h3 class="diff-title">{{ item.title }}</h3>
+        <p class="diff-description">{{ item.description }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- ─── CTA (reused) ─── -->
+<app-cta></app-cta>

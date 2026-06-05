@@ -1,0 +1,270 @@
+<!-- ─── HERO ─── -->
+<section class="pricing-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-scan"></div>
+
+    <div class="hero-inner">
+        <div class="hero-eyebrow rt-reveal">Pricing</div>
+        <h1 class="hero-title rt-reveal">
+            Honest pricing.<br><span>No hidden costs.</span>
+        </h1>
+        <p class="hero-sub rt-reveal">
+            One-off project fees. Optional monthly add-ons. You own everything you
+            pay for, and you only pay for what you actually need. Every cost is on
+            this page.
+        </p>
+
+        <div class="hero-pillars rt-reveal">
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 6v6l4 2" />
+                    </svg>
+                </div>
+                <div class="pillar-text">
+                    <strong>Pay once</strong>
+                    <span>Project-based, not subscription</span>
+                </div>
+            </div>
+
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
+                    </svg>
+                </div>
+                <div class="pillar-text">
+                    <strong>Own it outright</strong>
+                    <span>Code, content, domain — all yours</span>
+                </div>
+            </div>
+
+            <div class="pillar">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <div class="pillar-text">
+                    <strong>No lock-in</strong>
+                    <span>Add-ons are optional & month-to-month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── PACKAGES (reused component) ─── -->
+<app-packages></app-packages>
+
+<!-- ─── COMPARISON TABLE (collapsible) ─── -->
+<section class="comparison-section">
+    <div class="comparison-toggle-wrap">
+        <button class="comparison-toggle" (click)="toggleComparison()" [class.open]="comparisonOpen()"
+            [attr.aria-expanded]="comparisonOpen()">
+            <span>{{ comparisonOpen() ? 'Hide' : 'Compare all packages' }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+            </svg>
+        </button>
+    </div>
+
+    @if (comparisonOpen()) {
+    <div class="comparison-table-wrap">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Bronze</th>
+                    <th class="featured-col">Silver</th>
+                    <th>Gold</th>
+                    <th>Platinum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (row of comparisonRows; track row.feature) {
+                <tr>
+                    <td class="row-label">{{ row.feature }}</td>
+
+                    @for (val of [row.bronze, row.silver, row.gold, row.platinum]; track $index) {
+                    <td [class.featured-col]="$index === 1">
+                        @if (val === true) {
+                        <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        } @else if (val === false) {
+                        <span class="dash">—</span>
+                        } @else {
+                        {{ val }}
+                        }
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>
+
+<!-- ─── ADD-ONS ─── -->
+<section class="addons-section">
+    <div class="section-header rt-reveal">
+        <div class="section-eyebrow">Optional Services</div>
+        <h2 class="section-title">
+            Add-ons for clients<br><span>who want more.</span>
+        </h2>
+        <p class="section-body">
+            None of these are required. They are for clients who want continued
+            support, marketing services, or technical maintenance after launch.
+            Start, pause, or cancel anytime.
+        </p>
+    </div>
+
+    <div class="addons-subhead rt-reveal">
+        <span class="subhead-label">Monthly Services</span>
+    </div>
+
+    <div class="addons-grid">
+        @for (addon of monthlyAddOns; track addon.name; let i = $index) {
+        <div class="addon-card rt-reveal" [class.recommended]="addon.recommended"
+            [style.transition-delay]="(i * 0.05) + 's'">
+            @if (addon.recommended) {
+            <div class="addon-badge">Recommended</div>
+            }
+            <div class="addon-name">{{ addon.name }}</div>
+            <div class="addon-price">
+                {{ addon.price }}
+                <span>{{ addon.cadence }}</span>
+            </div>
+            <p class="addon-desc">{{ addon.description }}</p>
+        </div>
+        }
+    </div>
+
+    <div class="addons-subhead rt-reveal">
+        <span class="subhead-label">One-Off Services</span>
+    </div>
+
+    <div class="addons-grid oneoff-grid">
+        @for (addon of oneOffAddOns; track addon.name) {
+        <div class="addon-card rt-reveal">
+            <div class="addon-name">{{ addon.name }}</div>
+            <div class="addon-price">
+                {{ addon.price }}
+                <span>{{ addon.cadence }}</span>
+            </div>
+            <p class="addon-desc">{{ addon.description }}</p>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- ─── UPDATE PRICING ─── -->
+<section class="updates-section">
+    <div class="updates-inner">
+        <div class="updates-content rt-reveal">
+            <div class="section-eyebrow">Post-Launch Changes</div>
+            <h2 class="section-title">
+                Updates after<br><span>you launch.</span>
+            </h2>
+            <p class="section-body">
+                Two paths: subscribe to the Care Plan for an included monthly
+                update allowance, or pay only for what you need.
+            </p>
+        </div>
+
+        <div class="updates-grid rt-reveal">
+            <div class="update-card">
+                <div class="update-label">Care Plan Clients</div>
+                <div class="update-value">Included</div>
+                <p class="update-desc">
+                    Minor updates included within your monthly allowance. Anything
+                    beyond is quoted separately at the rates opposite.
+                </p>
+            </div>
+
+            <div class="update-card">
+                <div class="update-label">Pay-As-You-Go</div>
+                <div class="update-value">R350<span>/hour</span></div>
+                <p class="update-desc">
+                    Small text or image changes. Scoped per request, billed only for
+                    time spent.
+                </p>
+            </div>
+
+            <div class="update-card">
+                <div class="update-label">New Features</div>
+                <div class="update-value">From R1,500</div>
+                <p class="update-desc">
+                    New pages, sections, or functionality. Always quoted in advance —
+                    you approve before any work starts.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── EXCLUSIONS ─── -->
+<section class="exclusions-section">
+    <div class="exclusions-inner">
+        <div class="exclusions-header rt-reveal">
+            <div class="section-eyebrow alt">What's Not Included</div>
+            <h2 class="section-title">
+                Costs paid<br><span>directly by you.</span>
+            </h2>
+            <p class="section-body">
+                To prevent any ambiguity, these costs are always borne by the client
+                and are not part of any project fee. We advise on selection and
+                handle technical setup where relevant.
+            </p>
+        </div>
+
+        <ul class="exclusions-list rt-reveal">
+            @for (item of exclusions; track item) {
+            <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                {{ item }}
+            </li>
+            }
+        </ul>
+    </div>
+</section>
+
+<!-- ─── PRICING FAQ ─── -->
+<section class="pricing-faq-section">
+    <div class="section-eyebrow rt-reveal">Pricing Questions</div>
+    <h2 class="section-title rt-reveal">
+        Common questions<br><span>about cost.</span>
+    </h2>
+
+    <div class="faq-list">
+        @for (faq of pricingFaqs; track faq.q; let i = $index) {
+        <div class="faq-item rt-reveal" [class.open]="openFaqIndex() === i" [style.transition-delay]="(i * 0.04) + 's'"
+            (click)="toggleFaq(i)">
+            <div class="faq-q">
+                {{ faq.q }}
+                <svg class="faq-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+            </div>
+            <div class="faq-a">{{ faq.a }}</div>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- ─── CTA (reused) ─── -->
+<app-cta></app-cta>

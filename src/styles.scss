@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+// ─── RogueTech Global Entry Styles ───
+// Referenced in angular.json under "styles"
+
+@use 'app/styles/tokens' as *;
+@use 'app/styles/reset' as *;
+@use 'app/styles/typography' as *;
+@use 'app/styles/animations' as *;

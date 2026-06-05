@@ -1,0 +1,144 @@
+@use '../../../styles/tokens' as *;
+// ─── SECTION SHELL ───
+// (Re-declared here so the component is self-contained.
+//  These also exist in shared section styles — safe to keep both.)
+.section-pad {
+  padding: var(--rt-space-3xl) var(--rt-space-xl);
+  position: relative;
+  z-index: 2;
+}
+
+.bg-dark { background: var(--rt-dark); }
+
+.section-eyebrow { @include eyebrow; margin-bottom: 16px; }
+
+.section-title {
+  @include display-title;
+  font-size: clamp(42px, 6vw, 72px);
+  margin-bottom: 20px;
+  span { color: var(--rt-red); }
+}
+
+.section-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--rt-text-muted);
+  max-width: 560px;
+}
+
+// ─── PACKAGES LAYOUT ───
+.packages-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end; margin-bottom: 72px;
+
+  @include respond-to(md) { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.packages-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+
+  @include respond-to(lg) { grid-template-columns: 1fr 1fr; }
+  @include respond-to(sm) { grid-template-columns: 1fr; }
+}
+
+.package-card {
+  @include card-base;
+  padding: 44px 32px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+
+  &.featured {
+    background: rgba(204,0,0,0.08);
+    border: 1px solid rgba(204,0,0,0.25);
+    &:hover { background: rgba(204,0,0,0.12); }
+  }
+
+  &:hover { transform: translateY(-6px); }
+}
+
+.package-tag {
+  font-family: var(--rt-font-ui);
+  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+  display: inline-block; padding: 4px 10px; margin-bottom: 20px;
+  border: 1px solid var(--rt-border); color: var(--rt-red);
+  align-self: flex-start;
+
+  &.featured-tag {
+    background: var(--rt-red);
+    color: var(--rt-white);
+    border-color: var(--rt-red);
+  }
+}
+
+.package-name {
+  font-family: var(--rt-font-display);
+  font-size: 36px; color: var(--rt-white); letter-spacing: 1px; margin-bottom: 4px;
+}
+
+.package-tagline {
+  font-family: var(--rt-font-ui);
+  font-size: 13px; letter-spacing: 1px; color: var(--rt-text-muted); margin-bottom: 28px;
+}
+
+.package-price {
+  font-family: var(--rt-font-display);
+  font-size: 44px; color: var(--rt-red); line-height: 1; margin-bottom: 6px;
+}
+
+.package-price-sub {
+  font-family: var(--rt-font-ui);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--rt-text-muted); margin-bottom: 28px;
+}
+
+.package-features {
+  list-style: none; margin-bottom: 36px;
+  flex-grow: 1;
+
+  li {
+    font-size: 13px; font-weight: 300; color: var(--rt-text-muted);
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: flex-start; gap: 10px;
+
+    &::before {
+      content: ''; width: 4px; height: 4px;
+      background: var(--rt-red); border-radius: 50%;
+      flex-shrink: 0; margin-top: 8px;
+    }
+  }
+}
+
+.btn-package {
+  width: 100%;
+  font-family: var(--rt-font-ui);
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--rt-white); padding: 12px; background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--rt-radius-sm);
+  cursor: pointer; transition: all 0.3s;
+  display: block; text-align: center;
+  text-decoration: none;
+  margin-top: auto;
+
+  &:hover,
+  .featured & {
+    background: var(--rt-red);
+    border-color: var(--rt-red);
+    box-shadow: 0 8px 24px var(--rt-red-glow);
+  }
+}
+
+.packages-fineprint {
+  margin-top: 48px;
+  font-family: var(--rt-font-ui);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--rt-text-muted);
+  max-width: 720px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  opacity: 0.7;
+}

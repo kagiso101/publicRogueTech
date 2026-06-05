@@ -1,0 +1,69 @@
+@use '../../../styles/tokens' as *;
+
+// ─── SECTION SHELL ───
+.section-pad {
+  padding: var(--rt-space-3xl) var(--rt-space-xl);
+  position: relative;
+  z-index: 2;
+}
+
+.section-eyebrow { @include eyebrow; margin-bottom: 16px; }
+
+.section-title {
+  @include display-title;
+  font-size: clamp(42px, 6vw, 72px);
+  margin-bottom: 20px;
+  span { color: var(--rt-red); }
+}
+
+// ─── FAQ ───
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 72px;
+
+  @include respond-to(md) { grid-template-columns: 1fr; }
+}
+
+.faq-item {
+  @include card-base;
+  padding: 32px 36px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+
+  &:hover,
+  &.open {
+    background: var(--rt-card-hover);
+    border-left-color: var(--rt-red);
+  }
+}
+
+.faq-q {
+  font-family: var(--rt-font-ui);
+  font-size: 18px; font-weight: 700; letter-spacing: 0.5px;
+  color: var(--rt-white);
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+}
+
+.faq-icon {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  color: var(--rt-red);
+  transition: transform 0.3s;
+
+  .open & { transform: rotate(45deg); }
+}
+
+.faq-a {
+  font-size: 14px; font-weight: 300;
+  color: var(--rt-text-muted);
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s, margin 0.4s;
+
+  .open & {
+    max-height: 300px;
+    margin-top: 16px;
+  }
+}

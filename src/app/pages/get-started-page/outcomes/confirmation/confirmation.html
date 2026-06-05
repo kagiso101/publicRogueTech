@@ -1,0 +1,30 @@
+<div class="outcome">
+  <div class="icon-wrap">
+    <i class="ti ti-check" aria-hidden="true"></i>
+  </div>
+
+  <p class="eyebrow">Enquiry received</p>
+  <h1>We've got it from <span class="accent">here.</span></h1>
+
+  <p class="lead-message">
+    {{ facade.submission()?.message }}
+  </p>
+
+  <div class="reference">
+    <span class="ref-label">Reference</span>
+    <code>{{ facade.submission()?.id }}</code>
+  </div>
+
+  <div class="next-steps">
+    <p class="next-title">What happens now</p>
+    <ul>
+      <li><span>01.</span> We review your enquiry within 24 business hours.</li>
+      <li><span>02.</span> You'll get a personal email with our recommended approach.</li>
+      <li><span>03.</span> If it's a fit, we'll book a call to dig deeper.</li>
+    </ul>
+  </div>
+
+  <button class="rt-btn-secondary" (click)="goHome()">
+    Back to RogueTech
+  </button>
+</div>

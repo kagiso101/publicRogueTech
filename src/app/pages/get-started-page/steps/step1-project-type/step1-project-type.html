@@ -1,0 +1,30 @@
+<div class="step">
+  <p class="eyebrow">Step 01 of 05 — Branch point</p>
+  <h1>What are we <span class="accent">building?</span></h1>
+  <p class="sub">This shapes the next questions we ask you.</p>
+
+  <div class="choices">
+    @for (opt of options; track opt.value) {
+      <button
+        type="button"
+        class="choice"
+        [class.selected]="facade.projectType() === opt.value"
+        (click)="select(opt.value)">
+        <i class="ti {{ opt.icon }}" aria-hidden="true"></i>
+        <h4>{{ opt.title }}</h4>
+        <p>{{ opt.description }}</p>
+      </button>
+    }
+  </div>
+
+  <div class="nav-row">
+    <span></span>
+    <button
+      type="button"
+      class="rt-btn"
+      [disabled]="!facade.projectType()"
+      (click)="continue()">
+      Continue
+    </button>
+  </div>
+</div>

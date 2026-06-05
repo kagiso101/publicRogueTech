@@ -1,0 +1,187 @@
+<div class="step">
+  <p class="eyebrow">Step 03 of 05 — Project details</p>
+  <h1>Tell us about the <span class="accent">project.</span></h1>
+  <p class="sub">A few specifics so we can scope this properly.</p>
+
+  @switch (facade.projectType()) {
+
+    <!-- ─── WEBSITE PATH ─── -->
+    @case (ProjectType.Website) {
+      <form [formGroup]="websiteForm" (ngSubmit)="continue()" novalidate>
+
+        <div class="field" [class.invalid]="isInvalid(websiteForm, 'hasExistingSite')">
+          <label>Do you have an existing site?</label>
+          <div class="radio-row">
+            <label class="radio">
+              <input type="radio" formControlName="hasExistingSite" [value]="false" />
+              <span>No, starting fresh</span>
+            </label>
+            <label class="radio">
+              <input type="radio" formControlName="hasExistingSite" [value]="true" />
+              <span>Yes, needs a redesign</span>
+            </label>
+          </div>
+          @if (isInvalid(websiteForm, 'hasExistingSite')) {
+            <p class="error">Please pick one.</p>
+          }
+        </div>
+
+        <div class="field" [class.invalid]="isInvalid(websiteForm, 'pageCount')">
+          <label for="pageCount">How many pages?</label>
+          <select id="pageCount" formControlName="pageCount">
+            <option value="" disabled>Select…</option>
+            @for (opt of pageCountOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid(websiteForm, 'pageCount')) {
+            <p class="error">Please give us a rough idea of page count.</p>
+          }
+        </div>
+
+        <div class="field">
+          <label>Features you need (pick any)</label>
+          <div class="checkbox-grid" formArrayName="features">
+            @for (opt of websiteFeatureOptions; track opt; let i = $index) {
+              <label class="checkbox">
+                <input type="checkbox" [formControlName]="i" />
+                <span>{{ opt }}</span>
+              </label>
+            }
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+          <button type="submit" class="rt-btn" [disabled]="!canContinue()">Continue</button>
+        </div>
+      </form>
+    }
+
+    <!-- ─── WEB APP PATH ─── -->
+    @case (ProjectType.Webapp) {
+      <form [formGroup]="webappForm" (ngSubmit)="continue()" novalidate>
+
+        <div class="field" [class.invalid]="isInvalid(webappForm, 'problemStatement')">
+          <label for="problemStatement">What problem are you solving?</label>
+          <textarea
+            id="problemStatement"
+            formControlName="problemStatement"
+            rows="4"
+            placeholder="e.g. Our team manages 200+ bookings a week in spreadsheets — we need something purpose-built."></textarea>
+          @if (isInvalid(webappForm, 'problemStatement')) {
+            <p class="error">
+              @if (webappForm.get('problemStatement')?.errors?.['required']) {
+                Please describe the problem.
+              } @else if (webappForm.get('problemStatement')?.errors?.['minlength']) {
+                A bit more detail helps — at least 20 characters.
+              }
+            </p>
+          }
+        </div>
+
+        <div class="field" [class.invalid]="isInvalid(webappForm, 'userType')">
+          <label for="userType">Who's the user?</label>
+          <select id="userType" formControlName="userType">
+            <option value="" disabled>Select…</option>
+            @for (opt of userTypeOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid(webappForm, 'userType')) {
+            <p class="error">Please pick the primary user.</p>
+          }
+        </div>
+
+        <div class="field">
+          <label>Core features (pick any)</label>
+          <div class="checkbox-grid" formArrayName="features">
+            @for (opt of webappFeatureOptions; track opt; let i = $index) {
+              <label class="checkbox">
+                <input type="checkbox" [formControlName]="i" />
+                <span>{{ opt }}</span>
+              </label>
+            }
+          </div>
+        </div>
+
+        <div class="nav-row">
+          <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+          <button type="submit" class="rt-btn" [disabled]="!canContinue()">Continue</button>
+        </div>
+      </form>
+    }
+
+    <!-- ─── SAAS PATH ─── -->
+    @case (ProjectType.Saas) {
+      <form [formGroup]="saasForm" (ngSubmit)="continue()" novalidate>
+
+        <div class="field" [class.invalid]="isInvalid(saasForm, 'newOrRebuild')">
+          <label for="newOrRebuild">New build or rebuild?</label>
+          <select id="newOrRebuild" formControlName="newOrRebuild">
+            <option value="" disabled>Select…</option>
+            @for (opt of newOrRebuildOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid(saasForm, 'newOrRebuild')) {
+            <p class="error">Please pick one.</p>
+          }
+        </div>
+
+        <div class="field" [class.invalid]="isInvalid(saasForm, 'validationStage')">
+          <label for="validationStage">Validation stage?</label>
+          <select id="validationStage" formControlName="validationStage">
+            <option value="" disabled>Select…</option>
+            @for (opt of validationStageOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid(saasForm, 'validationStage')) {
+            <p class="error">Where are you in the journey?</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="yearOneCustomers">Realistic year-one customer count? (optional)</label>
+          <input
+            id="yearOneCustomers"
+            type="text"
+            formControlName="yearOneCustomers"
+            placeholder="e.g. 50–100 paying users" />
+        </div>
+
+        <div class="field" [class.invalid]="isInvalid(saasForm, 'multiTenant')">
+          <label for="multiTenant">Multi-tenant architecture?</label>
+          <select id="multiTenant" formControlName="multiTenant">
+            <option value="" disabled>Select…</option>
+            @for (opt of multiTenantOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid(saasForm, 'multiTenant')) {
+            <p class="error">Pick whichever fits best.</p>
+          }
+        </div>
+
+        <div class="nav-row">
+          <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+          <button type="submit" class="rt-btn" [disabled]="!canContinue()">Continue</button>
+        </div>
+      </form>
+    }
+
+    <!-- ─── UNSURE PATH ─── -->
+    @case (ProjectType.Unsure) {
+      <div class="unsure-panel">
+        <i class="ti ti-message-circle-2" aria-hidden="true"></i>
+        <h3>We'll figure it out together.</h3>
+        <p>Since you're not sure what you need yet, we'll cover this on a quick strategy call. No prep needed.</p>
+      </div>
+      <div class="nav-row">
+        <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+        <button type="button" class="rt-btn" (click)="continue()">Continue</button>
+      </div>
+    }
+  }
+</div>

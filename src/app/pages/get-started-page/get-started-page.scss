@@ -1,0 +1,76 @@
+@use '../../styles/tokens' as *;
+
+.wizard {
+  min-height: 100vh;
+  background: var(--rt-black);
+  color: var(--rt-text);
+  font-family: var(--rt-font-body);
+  display: flex;
+  flex-direction: column;
+}
+
+.wizard-header {
+  padding: var(--rt-space-lg) var(--rt-space-xl);
+  border-bottom: 1px solid var(--rt-border-subtle);
+}
+
+.back-home {
+  font-family: var(--rt-font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rt-text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--rt-transition);
+
+  span {
+    color: var(--rt-red);
+    transition: var(--rt-transition);
+  }
+
+  &:hover {
+    color: var(--rt-white);
+
+    span {
+      transform: translateX(-2px);
+    }
+  }
+}
+
+.wizard-container {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--rt-space-xl) var(--rt-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rt-space-xl);
+}
+
+.wizard-step {
+  background: var(--rt-card);
+  padding: 48px 40px;
+  position: relative;
+  border-radius: var(--rt-radius-sm);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--rt-red);
+  }
+
+  @include respond-to(sm) {
+    padding: 32px 24px;
+  }
+}

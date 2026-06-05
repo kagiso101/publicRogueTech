@@ -1,0 +1,152 @@
+// ─── RogueTech Design Tokens ───
+// Single source of truth for all colors, spacing, typography, shadows.
+// Every component references these — never hardcode values.
+
+:root {
+  // Brand colors
+  --rt-red:          #CC0000;
+  --rt-red-bright:   #FF1A1A;
+  --rt-red-dim:      #880000;
+  --rt-red-glow:     rgba(204, 0, 0, 0.25);
+
+  // Backgrounds
+  --rt-black:        #080808;
+  --rt-dark:         #0F0F0F;
+  --rt-card:         #141414;
+  --rt-card-hover:   #1A1A1A;
+
+  // Text
+  --rt-text:         #F0F0F0;
+  --rt-text-muted:   #888888;
+  --rt-white:        #FFFFFF;
+
+  // Borders
+  --rt-border:       rgba(204, 0, 0, 0.18);
+  --rt-border-subtle: rgba(255, 255, 255, 0.06);
+
+  // Spacing scale
+  --rt-space-xs:     4px;
+  --rt-space-sm:     8px;
+  --rt-space-md:     16px;
+  --rt-space-lg:     24px;
+  --rt-space-xl:     48px;
+  --rt-space-2xl:    80px;
+  --rt-space-3xl:    120px;
+
+  // Typography
+  --rt-font-display: 'Bebas Neue', sans-serif;
+  --rt-font-body:    'Barlow', sans-serif;
+  --rt-font-ui:      'Barlow Condensed', sans-serif;
+
+  // Border radius
+  --rt-radius-sm:    2px;
+  --rt-radius-md:    4px;
+  --rt-radius-lg:    8px;
+
+  // Transitions
+  --rt-transition:   all 0.2s ease;
+  --rt-transition-slow: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  // Z-index scale
+  --rt-z-base:       1;
+  --rt-z-overlay:    10;
+  --rt-z-nav:        100;
+  --rt-z-modal:      1000;
+  --rt-z-cursor:     9999;
+
+  // Section padding
+  --rt-section-pad:  var(--rt-space-3xl) var(--rt-space-xl);
+
+  // Nav height
+  --rt-nav-height:   72px;
+
+  // Max content width
+  --rt-max-width:    1280px;
+}
+
+// ─── SCSS variables (for use inside SCSS functions/mixins) ───
+$red:        #CC0000;
+$red-bright: #FF1A1A;
+$black:      #080808;
+$dark:       #0F0F0F;
+$card:       #141414;
+$text:       #F0F0F0;
+$muted:      #888888;
+$white:      #FFFFFF;
+$border:     rgba(204, 0, 0, 0.18);
+
+// ─── Breakpoints ───
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+
+// ─── Mixins ───
+@mixin respond-to($bp) {
+  @if $bp == sm  { @media (max-width: #{$bp-sm})  { @content; } }
+  @if $bp == md  { @media (max-width: #{$bp-md})  { @content; } }
+  @if $bp == lg  { @media (max-width: #{$bp-lg})  { @content; } }
+  @if $bp == xl  { @media (max-width: #{$bp-xl})  { @content; } }
+}
+
+@mixin section-padding {
+  padding: var(--rt-section-pad);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin eyebrow {
+  font-family: var(--rt-font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rt-red);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--rt-red);
+    flex-shrink: 0;
+  }
+}
+
+@mixin display-title {
+  font-family: var(--rt-font-display);
+  line-height: 0.92;
+  letter-spacing: 1px;
+  color: var(--rt-white);
+}
+
+@mixin btn-base {
+  font-family: var(--rt-font-ui);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--rt-radius-sm);
+  cursor: pointer;
+  transition: var(--rt-transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+@mixin card-base {
+  background: var(--rt-card);
+  transition: var(--rt-transition-slow);
+
+  &:hover {
+    background: var(--rt-card-hover);
+  }
+}

@@ -1,0 +1,40 @@
+<section id="hero" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">South African Digital Agency</div>
+    <h1 class="hero-title">
+      <span class="word w1"></span>
+      <span class="word w2"></span>
+      <span class="word accent w3 glitch-target"></span>
+      <span class="word w4"></span>
+      <span class="word w5"></span>
+    </h1>
+    <p class="hero-sub">
+      RogueTech builds, launches and grows your online presence — from a
+      <strong>spaza shop</strong> to an <strong>enterprise platform</strong>.
+      We handle everything while you run your business.
+    </p>
+    <div class="hero-btns">
+      <a routerLink="/contact" class="btn-primary">Get Started</a>
+      <a routerLink="/pricing" class="btn-outline">View Packages</a>
+    </div>
+  </div>
+
+  <div class="hero-badge">
+    <div class="badge-label">Status</div>
+    <div class="badge-text"><span class="badge-dot"></span>Taking new clients</div>
+  </div>
+
+  <div class="hero-stats">
+    @for (stat of stats; track stat.id) {
+      <div class="stat">
+        <div class="stat-num"><span [id]="stat.id">0</span>{{ stat.suffix }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<section id="proof" class="section-pad bg-dark">
+  <div class="section-eyebrow rt-reveal">Why RogueTech</div>
+
+  <div class="proof-grid">
+    <div>
+      <div class="proof-quote rt-reveal">
+        "{{ testimonial.quote }}
+        <span>{{ testimonial.highlight }}</span>
+        {{ testimonial.quoteEnd }}"
+      </div>
+      <div class="proof-author rt-reveal rt-delay-1">
+        <div class="proof-avatar">{{ testimonial.initials }}</div>
+        <div>
+          <div class="proof-name">{{ testimonial.name }}</div>
+          <div class="proof-role">{{ testimonial.role }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-partner rt-reveal rt-delay-2">
+      <div class="partner-tag">{{ partner.tag }}</div>
+      <div class="partner-logo">
+        @for (line of partner.logo.split('\n'); track line) {
+          <div>{{ line }}</div>
+        }
+      </div>
+      <p class="partner-desc">{{ partner.description }}</p>
+      <div class="partner-badge">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M4 6 L5.5 7.5 L8 4.5"
+                stroke="currentColor" stroke-width="1.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ partner.badge }}
+      </div>
+    </div>
+  </div>
+</section>

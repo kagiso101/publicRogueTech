@@ -1,0 +1,96 @@
+// ─── RogueTech Global Animations ───
+
+// ── Keyframes ──
+@keyframes rt-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rt-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes rt-scan {
+  0%   { top: 0;    opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.4; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes rt-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes rt-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes rt-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 204, 102, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(0, 204, 102, 0); }
+}
+
+@keyframes rt-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes rt-glitch-1 {
+  0%   { transform: translate(0); }
+  33%  { transform: translate(-3px, 1px); }
+  66%  { transform: translate(3px, -1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes rt-glitch-2 {
+  0%   { transform: translate(0); }
+  33%  { transform: translate(3px, -1px); }
+  66%  { transform: translate(-3px, 1px); }
+  100% { transform: translate(0); }
+}
+
+// ── Scroll Reveal Utility ──
+// Apply .rt-reveal to any element — JS adds .rt-visible on intersection
+.rt-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.rt-visible { opacity: 1; transform: translateY(0); }
+
+  &.rt-delay-1 { transition-delay: 0.1s; }
+  &.rt-delay-2 { transition-delay: 0.2s; }
+  &.rt-delay-3 { transition-delay: 0.3s; }
+  &.rt-delay-4 { transition-delay: 0.4s; }
+}
+
+// ── Entrance animation utilities ──
+.rt-animate-hero {
+  animation: rt-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.rt-animate-float {
+  animation: rt-float 4s ease-in-out infinite;
+}
+
+// ── Respect reduced motion ──
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .rt-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

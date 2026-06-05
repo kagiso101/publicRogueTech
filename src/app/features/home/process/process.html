@@ -1,0 +1,21 @@
+<section id="process" class="section-pad">
+  <div class="section-center">
+    <div class="section-eyebrow rt-reveal">How It Works</div>
+    <h2 class="section-title rt-reveal">
+      From sign-up to<br><span>going live.</span>
+    </h2>
+  </div>
+
+  <div class="process-grid">
+    @for (step of processSteps; track step.num; let i = $index) {
+      <div class="process-step rt-reveal"
+           [style.transition-delay]="(i * 0.1) + 's'">
+        <div class="process-num-wrap">
+          <div class="process-num">{{ step.num }}</div>
+        </div>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.desc }}</p>
+      </div>
+    }
+  </div>
+</section>

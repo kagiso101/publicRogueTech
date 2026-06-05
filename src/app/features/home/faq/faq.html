@@ -1,0 +1,28 @@
+<section id="faq" class="section-pad">
+  <div class="section-eyebrow rt-reveal">FAQ</div>
+  <h2 class="section-title rt-reveal">
+    Questions we get<br><span>all the time.</span>
+  </h2>
+
+  <div class="faq-grid">
+    @for (faq of faqs; track faq.q; let i = $index) {
+      <div class="faq-item rt-reveal"
+           [class.open]="openFaqIndex === i"
+           [style.transition-delay]="(i % 2 * 0.1) + 's'"
+           (click)="toggleFaq(i)">
+        <div class="faq-q">
+          {{ faq.q }}
+          <svg class="faq-icon"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+        <div class="faq-a">{{ faq.a }}</div>
+      </div>
+    }
+  </div>
+</section>

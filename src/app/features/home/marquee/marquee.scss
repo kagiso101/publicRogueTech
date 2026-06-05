@@ -1,0 +1,66 @@
+@use '../../../styles/tokens' as *;
+
+.marquee-wrap {
+  overflow: hidden;
+  padding: 20px 0;
+  border-top: 1px solid var(--rt-border);
+  border-bottom: 1px solid var(--rt-border);
+  background: rgba(204, 0, 0, 0.04);
+  position: relative;
+  z-index: 2;
+
+  // Fade edges
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--rt-black), transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--rt-black), transparent);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: rt-marquee 32s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-item {
+  font-family: var(--rt-font-display);
+  font-size: 15px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rt-text-muted);
+  white-space: nowrap;
+  padding: 0 8px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--rt-white);
+  }
+}
+
+.marquee-sep {
+  font-family: var(--rt-font-display);
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: var(--rt-red);
+  padding: 0 8px;
+  white-space: nowrap;
+}

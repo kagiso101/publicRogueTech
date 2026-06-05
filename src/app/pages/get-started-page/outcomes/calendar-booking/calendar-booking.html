@@ -1,0 +1,25 @@
+<div class="outcome">
+  <div class="icon-wrap">
+    <i class="ti ti-calendar-event" aria-hidden="true"></i>
+  </div>
+
+  <p class="eyebrow">Strategy call recommended</p>
+  <h1>Let's <span class="accent">talk.</span></h1>
+
+  <p class="lead-message">
+    Based on what you've shared, we'd like a proper conversation before quoting.
+    Pick a 30-minute slot that works for you — no obligation, no pitch.
+  </p>
+
+  <div class="reference">
+    <span class="ref-label">Reference</span>
+    <code>{{ facade.submission()?.id }}</code>
+  </div>
+
+  <!-- Cal.com embed mounts inside this div -->
+  <div class="cal-embed" #calEmbed></div>
+
+  <button class="rt-btn-secondary" (click)="goHome()">
+    Back to RogueTech
+  </button>
+</div>

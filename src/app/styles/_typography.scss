@@ -1,0 +1,27 @@
+// ─── RogueTech Typography ───
+// Google Fonts loaded in index.html
+// Bebas Neue — display/headings
+// Barlow — body
+// Barlow Condensed — UI labels, nav, buttons
+
+// Display sizes (Bebas Neue)
+.rt-display-xl  { font-family: var(--rt-font-display); font-size: clamp(60px, 9vw, 120px); line-height: 0.92; letter-spacing: 2px; }
+.rt-display-lg  { font-family: var(--rt-font-display); font-size: clamp(42px, 6vw, 72px);  line-height: 0.95; letter-spacing: 1px; }
+.rt-display-md  { font-family: var(--rt-font-display); font-size: clamp(32px, 4vw, 52px);  line-height: 1;    letter-spacing: 1px; }
+.rt-display-sm  { font-family: var(--rt-font-display); font-size: 28px; line-height: 1; letter-spacing: 1px; }
+
+// Body
+.rt-body-lg     { font-family: var(--rt-font-body); font-size: 18px; font-weight: 300; line-height: 1.8; }
+.rt-body        { font-family: var(--rt-font-body); font-size: 16px; font-weight: 300; line-height: 1.8; }
+.rt-body-sm     { font-family: var(--rt-font-body); font-size: 14px; font-weight: 300; line-height: 1.7; }
+
+// UI / Labels (Barlow Condensed)
+.rt-label-lg    { font-family: var(--rt-font-ui); font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.rt-label       { font-family: var(--rt-font-ui); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.rt-label-sm    { font-family: var(--rt-font-ui); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+
+// Color utilities
+.rt-text-primary  { color: var(--rt-white); }
+.rt-text-muted    { color: var(--rt-text-muted); }
+.rt-text-red      { color: var(--rt-red); }
+.rt-text-body     { color: var(--rt-text); }

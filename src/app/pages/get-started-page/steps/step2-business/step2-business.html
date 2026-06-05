@@ -1,0 +1,62 @@
+<div class="step">
+  <p class="eyebrow">Step 02 of 05 — Universal</p>
+  <h1>Tell us about your <span class="accent">business.</span></h1>
+  <p class="sub">A few quick details so we can prepare the right way.</p>
+
+  <form [formGroup]="form" (ngSubmit)="continue()" novalidate>
+
+    <!-- Business Name -->
+    <div class="field" [class.invalid]="isInvalid('businessName')">
+      <label for="businessName">Business Name</label>
+      <input
+        id="businessName"
+        type="text"
+        formControlName="businessName"
+        placeholder="e.g. Bruja Thembi Tarot"
+        autocomplete="organization" />
+      @if (isInvalid('businessName')) {
+        <p class="error">
+          @if (form.get('businessName')?.errors?.['required']) {
+            Please enter your business name.
+          } @else if (form.get('businessName')?.errors?.['minlength']) {
+            That's too short — minimum 2 characters.
+          }
+        </p>
+      }
+    </div>
+
+    <!-- Industry -->
+    <div class="field" [class.invalid]="isInvalid('industry')">
+      <label for="industry">Industry</label>
+      <input
+        id="industry"
+        type="text"
+        formControlName="industry"
+        placeholder="e.g. Wellness & Spirituality" />
+      @if (isInvalid('industry')) {
+        <p class="error">Please tell us what industry you're in.</p>
+      }
+    </div>
+
+    <!-- Stage -->
+    <div class="field" [class.invalid]="isInvalid('stage')">
+      <label for="stage">Where are you right now?</label>
+      <select id="stage" formControlName="stage">
+        <option [ngValue]="null" disabled>Select your stage…</option>
+        @for (opt of stageOptions; track opt.value) {
+          <option [ngValue]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+      @if (isInvalid('stage')) {
+        <p class="error">Please pick the option that fits you best.</p>
+      }
+    </div>
+
+    <div class="nav-row">
+      <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+      <button type="submit" class="rt-btn" [disabled]="form.invalid">
+        Continue
+      </button>
+    </div>
+  </form>
+</div>

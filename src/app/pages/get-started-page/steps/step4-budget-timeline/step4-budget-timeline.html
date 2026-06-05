@@ -1,0 +1,42 @@
+<div class="step">
+  <p class="eyebrow">Step 04 of 05 — Universal</p>
+  <h1>Budget &amp; <span class="accent">timeline.</span></h1>
+  <p class="sub">Honest answers help us match the right approach.</p>
+
+  <form [formGroup]="form" (ngSubmit)="continue()" novalidate>
+
+    <!-- Timeline -->
+    <div class="field" [class.invalid]="isInvalid('timeline')">
+      <label for="timeline">Launch window</label>
+      <select id="timeline" formControlName="timeline">
+        <option [ngValue]="null" disabled>Select your timeline…</option>
+        @for (opt of timelineOptions; track opt.value) {
+          <option [ngValue]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+      @if (isInvalid('timeline')) {
+        <p class="error">Please pick a rough launch window.</p>
+      }
+    </div>
+
+    <!-- Budget (reactive based on projectType) -->
+    <div class="field" [class.invalid]="isInvalid('budgetRange')">
+      <label for="budgetRange">Budget range</label>
+      <select id="budgetRange" formControlName="budgetRange">
+        <option value="" disabled>Select your range…</option>
+        @for (opt of budgetOptions(); track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+      <p class="hint">▸ Options filter based on what you're building.</p>
+      @if (isInvalid('budgetRange')) {
+        <p class="error">Please pick a range — even rough is fine.</p>
+      }
+    </div>
+
+    <div class="nav-row">
+      <button type="button" class="rt-btn-secondary" (click)="back()">Back</button>
+      <button type="submit" class="rt-btn" [disabled]="form.invalid">Continue</button>
+    </div>
+  </form>
+</div>

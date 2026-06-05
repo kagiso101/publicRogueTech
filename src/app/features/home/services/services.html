@@ -1,0 +1,28 @@
+<section id="services" class="services-section">
+
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow rt-reveal">What We Do</div>
+      <h2 class="section-title rt-reveal">
+        We handle your entire<br><span>digital presence.</span>
+      </h2>
+    </div>
+    <p class="section-body rt-reveal">
+      End-to-end digital solutions — built, launched, and grown with you every step of the way.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    @for (service of services; track service.num; let i = $index) {
+      <div
+        class="service-card rt-reveal"
+        [style.transition-delay]="(i % 3 * 0.12) + 's'">
+        <div class="service-icon" [innerHTML]="service.icon"></div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.desc }}</p>
+        <div class="service-num">{{ service.num }}</div>
+      </div>
+    }
+  </div>
+
+</section>

@@ -1,0 +1,42 @@
+<section id="packages" class="section-pad bg-dark">
+  <div class="packages-intro">
+    <div>
+      <div class="section-eyebrow rt-reveal">Pricing</div>
+      <h2 class="section-title rt-reveal">
+        A package for every<br><span>stage of growth.</span>
+      </h2>
+    </div>
+    <p class="section-body rt-reveal">
+      Once-off project pricing — you own what you pay for. Optional add-ons
+      available for ongoing growth, support, and marketing.
+    </p>
+  </div>
+
+  <div class="packages-grid">
+    @for (pkg of packages; track pkg.tier; let i = $index) {
+      <div class="package-card rt-reveal"
+           [class.featured]="pkg.featured"
+           [style.transition-delay]="(i * 0.1) + 's'">
+        <div class="package-tag" [class.featured-tag]="pkg.featured">
+          {{ pkg.featured ? 'Most Popular — ' : '' }}{{ pkg.tier }}
+        </div>
+        <div class="package-name">{{ pkg.name }}</div>
+        <div class="package-tagline">{{ pkg.tagline }}</div>
+        <div class="package-price">{{ pkg.price }}</div>
+        <div class="package-price-sub">{{ pkg.priceSub }}</div>
+        <ul class="package-features">
+          @for (feature of pkg.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+        <a routerLink="/contact" class="btn-package">{{ pkg.ctaLabel }}</a>
+      </div>
+    }
+  </div>
+
+  <p class="packages-fineprint rt-reveal">
+    Domain and hosting not included. Client retains full ownership and pays
+    providers directly. RogueTech advises on selection and handles all
+    technical setup.
+  </p>
+</section>

@@ -1,0 +1,147 @@
+<!-- ─── HERO ─── -->
+<section class="services-hero">
+
+  <!-- Background layers -->
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+
+  <div class="hero-inner">
+
+    <div class="hero-content">
+      <div class="hero-eyebrow rt-reveal">What We Build</div>
+      <h1 class="hero-title rt-reveal">
+        Software that<br><span>actually ships.</span>
+      </h1>
+      <p class="hero-sub rt-reveal">
+        From a 3-page brochure site to a multi-tenant SaaS platform —
+        we build it, <strong>you own it</strong>, and we are honest about
+        what it costs.
+      </p>
+
+      <div class="hero-meta rt-reveal">
+        <div class="meta-item">
+          <div class="meta-num">5</div>
+          <div class="meta-label">Service<br>Lines</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <div class="meta-num">100<span>%</span></div>
+          <div class="meta-label">Client<br>Owned</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <div class="meta-num">SA<span>.</span></div>
+          <div class="meta-label">Built<br>Locally</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right-side visual anchor -->
+    <div class="hero-stack rt-reveal rt-delay-2" aria-hidden="true">
+      <div class="stack-label">
+        <span class="stack-dot"></span>
+        Tech Stack
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-tile">
+          <div class="tile-name">Angular</div>
+          <div class="tile-cat">Frontend</div>
+        </div>
+        <div class="stack-tile">
+          <div class="tile-name">Spring Boot</div>
+          <div class="tile-cat">Backend</div>
+        </div>
+        <div class="stack-tile">
+          <div class="tile-name">PostgreSQL</div>
+          <div class="tile-cat">Database</div>
+        </div>
+        <div class="stack-tile">
+          <div class="tile-name">TypeScript</div>
+          <div class="tile-cat">Language</div>
+        </div>
+        <div class="stack-tile featured">
+          <div class="tile-name">REST APIs</div>
+          <div class="tile-cat">Architecture</div>
+        </div>
+        <div class="stack-tile">
+          <div class="tile-name">Docker</div>
+          <div class="tile-cat">DevOps</div>
+        </div>
+      </div>
+
+      <div class="stack-footer">
+        <span class="stack-pulse"></span>
+        Currently building <strong>Bookr</strong>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ─── SERVICES DETAIL ─── -->
+<section class="services-detail">
+  @for (service of services; track service.name; let i = $index) {
+    <article class="service-block rt-reveal"
+             [class.alt]="i % 2 === 1"
+             [style.transition-delay]="(i * 0.05) + 's'">
+
+      <div class="service-meta">
+        <div class="service-num">{{ service.num }}</div>
+        <div class="service-eyebrow">{{ service.eyebrow }}</div>
+      </div>
+
+      <div class="service-body">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path [attr.d]="service.icon"/>
+          </svg>
+        </div>
+
+        <h2 class="service-name">{{ service.name }}</h2>
+        <p class="service-tagline">{{ service.tagline }}</p>
+        <p class="service-description">{{ service.description }}</p>
+
+        <div class="service-features">
+          <div class="features-label">What's included</div>
+          <ul>
+            @for (feature of service.features; track feature) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="service-info">
+          <div class="info-item">
+            <div class="info-label">Best for</div>
+            <div class="info-value">{{ service.bestFor }}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Typical timeline</div>
+            <div class="info-value">{{ service.timeline }}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Starting from</div>
+            <div class="info-value info-price">{{ service.startingFrom }}</div>
+          </div>
+        </div>
+
+        <a [routerLink]="service.ctaLink" class="service-cta">
+          {{ service.ctaLabel }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+
+    </article>
+  }
+</section>
+
+<app-cta></app-cta>

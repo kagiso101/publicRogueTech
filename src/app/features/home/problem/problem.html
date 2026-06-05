@@ -1,0 +1,72 @@
+<section id="problem" class="problem-section">
+
+  <div class="problem-header rt-reveal">
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-title">
+      Most SA businesses are<br><span>invisible online.</span>
+    </h2>
+  </div>
+
+  <div class="problem-grid">
+
+    <div class="problem-cards">
+      @for (problem of problems; track problem.num; let i = $index) {
+        <div class="problem-card rt-reveal" [class]="'rt-delay-' + (i + 1)">
+          <div class="card-num">{{ problem.num }}</div>
+          <h3>{{ problem.title }}</h3>
+          <p>{{ problem.desc }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="problem-visual rt-reveal rt-delay-2">
+
+      <!-- Outer spinning ring -->
+      <div class="outer-ring">
+        <div class="outer-ring-inner"></div>
+
+        <!-- 3 stat circles stacked inside -->
+        <div class="stat-circles">
+          @for (stat of stats; track stat.label; let i = $index) {
+            <div class="stat-circle-wrap rt-reveal" [class]="'rt-delay-' + (i + 1)">
+              <svg class="stat-svg" viewBox="0 0 140 140">
+                <!-- Background track -->
+                <circle
+                  cx="70" cy="70" r="54"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.05)"
+                  stroke-width="6"/>
+                <!-- Progress arc -->
+                <circle
+                  class="stat-ring-progress"
+                  cx="70" cy="70" r="54"
+                  fill="none"
+                  stroke="#CC0000"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  transform="rotate(-90 70 70)"/>
+                <!-- Glow ring -->
+                <circle
+                  cx="70" cy="70" r="54"
+                  fill="none"
+                  stroke="rgba(204,0,0,0.15)"
+                  stroke-width="14"/>
+              </svg>
+
+              <div class="stat-content">
+                <div class="stat-value">
+                  <span class="stat-counter">0</span>
+                  <span class="stat-suffix">{{ stat.suffix }}</span>
+                </div>
+                <div class="stat-label">{{ stat.label }}</div>
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

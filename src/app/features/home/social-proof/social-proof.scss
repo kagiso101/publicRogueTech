@@ -1,0 +1,121 @@
+@use '../../../styles/tokens' as *;
+
+// ─── SECTION SHELL ───
+.section-pad {
+    padding: var(--rt-space-3xl) var(--rt-space-xl);
+    position: relative;
+    z-index: 2;
+}
+
+.bg-dark {
+    background: var(--rt-dark);
+}
+
+.section-eyebrow {
+    @include eyebrow;
+    margin-bottom: 16px;
+}
+
+// ─── PROOF ───
+.proof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 72px;
+
+    @include respond-to(md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.proof-quote {
+    font-family: var(--rt-font-display);
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--rt-white);
+    line-height: 1.1;
+    margin-bottom: 32px;
+
+    span {
+        color: var(--rt-red);
+    }
+}
+
+.proof-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.proof-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--rt-card);
+    border: 2px solid var(--rt-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--rt-font-display);
+    font-size: 20px;
+    color: var(--rt-red);
+}
+
+.proof-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--rt-white);
+}
+
+.proof-role {
+    font-size: 13px;
+    color: var(--rt-text-muted);
+}
+
+.proof-partner {
+    background: var(--rt-card);
+    padding: 48px;
+    border: 1px solid var(--rt-border);
+    border-radius: var(--rt-radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.partner-tag {
+    font-family: var(--rt-font-ui);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rt-red);
+}
+
+.partner-logo {
+    font-family: var(--rt-font-display);
+    font-size: 32px;
+    color: var(--rt-white);
+    letter-spacing: 3px;
+    line-height: 1.1;
+}
+
+.partner-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--rt-text-muted);
+    line-height: 1.7;
+}
+
+.partner-badge {
+    font-family: var(--rt-font-ui);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rt-red);
+    padding: 6px 14px;
+    border: 1px solid var(--rt-border);
+    border-radius: var(--rt-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
