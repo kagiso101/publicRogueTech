@@ -71,7 +71,7 @@ export class Hero implements AfterViewInit, OnDestroy {
       }, delay);
     };
 
-    const wordTexts = ['YOUR', 'BUSINESS', 'DESERVES', 'TO BE', 'FOUND.'];
+    const wordTexts = ['TECHNOLOGY', 'THAT', 'MOVES', 'BUSINESSES', 'FORWARD.'];
     const words = this.el.nativeElement.querySelectorAll('.word');
     words.forEach((word: Element, i: number) => {
       const el = word as HTMLElement;

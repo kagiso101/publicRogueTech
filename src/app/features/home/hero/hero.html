@@ -5,7 +5,7 @@
   <canvas id="hero-canvas"></canvas>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">South African Digital Agency</div>
+    <div class="hero-eyebrow">BUILT FOR BUSINESS GROWTH</div>
     <h1 class="hero-title">
       <span class="word w1"></span>
       <span class="word w2"></span>
@@ -14,9 +14,8 @@
       <span class="word w5"></span>
     </h1>
     <p class="hero-sub">
-      RogueTech builds, launches and grows your online presence — from a
-      <strong>spaza shop</strong> to an <strong>enterprise platform</strong>.
-      We handle everything while you run your business.
+      RogueTech engineers high-performance websites, digital platforms and growth systems that help businesses scale
+      faster, operate smarter and stand out online.
     </p>
     <div class="hero-btns">
       <a routerLink="/contact" class="btn-primary">Get Started</a>
@@ -26,15 +25,15 @@
 
   <div class="hero-badge">
     <div class="badge-label">Status</div>
-    <div class="badge-text"><span class="badge-dot"></span>Taking new clients</div>
+    <div class="badge-text"><span class="badge-dot"></span>Limited Client Openings</div>
   </div>
 
   <div class="hero-stats">
     @for (stat of stats; track stat.id) {
-      <div class="stat">
-        <div class="stat-num"><span [id]="stat.id">0</span>{{ stat.suffix }}</div>
-        <div class="stat-label">{{ stat.label }}</div>
-      </div>
+    <div class="stat">
+      <div class="stat-num"><span [id]="stat.id">0</span>{{ stat.suffix }}</div>
+      <div class="stat-label">{{ stat.label }}</div>
+    </div>
     }
   </div>
 </section>

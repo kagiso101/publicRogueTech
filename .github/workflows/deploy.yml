@@ -1,0 +1,36 @@
+name: Deploy to dev.rogue-tech.co.za
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 41.185.114.18
+          username: roguete6
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/publicRogueTech/browser/
+          server-dir: /dev.rogue-tech.co.za/
+          dangerous-clean-slate: true
