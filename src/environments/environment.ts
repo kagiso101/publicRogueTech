@@ -2,5 +2,5 @@
 // "development" build configuration (see angular.json fileReplacements).
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.roguetech.co.za',
+  apiBaseUrl: 'https://api.rogue-tech.co.za',
 };
