@@ -1,0 +1,94 @@
+@if (suburb(); as s) {
+  <div class="suburb-page">
+
+    <!-- ─── Hero ─── -->
+    <section class="suburb-hero">
+      <div class="hero-bg"></div>
+      <div class="container">
+        <p class="section-eyebrow">Web Design · {{ s.name }} · Cape Town</p>
+        <h1>Website Design in {{ s.name }} — From R8,500</h1>
+        @for (paragraph of s.intro; track $index) {
+          <p class="intro">{{ paragraph }}</p>
+        }
+        <div class="hero-actions">
+          <a routerLink="/get-started" class="btn-primary">Get a Free Quote</a>
+          <!-- TODO(Kagiso): swap for a wa.me/<number> link once the WhatsApp number is confirmed -->
+          <a href="mailto:info@rogue-tech.co.za" class="btn-outline">info&#64;rogue-tech.co.za</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Business landscape ─── -->
+    <section class="suburb-section">
+      <div class="container">
+        <h2>{{ s.landscape.heading }}</h2>
+        @for (paragraph of s.landscape.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </section>
+
+    <!-- ─── What the website must do ─── -->
+    <section class="suburb-section alt">
+      <div class="container">
+        <h2>{{ s.websiteAngle.heading }}</h2>
+        @for (paragraph of s.websiteAngle.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </section>
+
+    <!-- ─── Packages ─── -->
+    <section class="suburb-section">
+      <div class="container">
+        <h2>Transparent packages, real prices</h2>
+        <p class="packages-lede">
+          No "request a quote to see pricing" games. These are the packages every
+          {{ s.name }} project starts from:
+        </p>
+        <div class="package-grid">
+          @for (pkg of packages; track pkg.tier) {
+            <div class="package-card">
+              <span class="package-tier">{{ pkg.tier }}</span>
+              <span class="package-price">{{ pkg.price }}</span>
+              <span class="package-name">{{ pkg.name }}</span>
+              <p>{{ pkg.audience }}</p>
+            </div>
+          }
+        </div>
+        <p class="positioning">
+          More solid than a R500 template, half the price of the big agencies.
+          <a routerLink="/website-design-prices-cape-town">See how Cape Town web design pricing really works →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Local block ─── -->
+    <section class="suburb-section alt">
+      <div class="container">
+        <h2>We're local — actually local</h2>
+        <p>{{ s.localLine }}</p>
+        <div class="hero-actions">
+          <a routerLink="/get-started" class="btn-primary">Start Your Project</a>
+          <a routerLink="/pricing" class="btn-outline">View Full Packages</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Areas we serve ─── -->
+    <section class="suburb-section areas">
+      <div class="container">
+        <h2>Areas we serve</h2>
+        <p>RogueTech builds websites for businesses across the Blaauwberg corridor:</p>
+        <ul class="area-links">
+          @for (other of otherSuburbs(); track other.slug) {
+            <li><a [routerLink]="'/web-design-' + other.slug">Website Design {{ other.name }}</a></li>
+          }
+          <li><a routerLink="/website-design-prices-cape-town">Website Design Prices in Cape Town</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <app-cta />
+  </div>
+}
