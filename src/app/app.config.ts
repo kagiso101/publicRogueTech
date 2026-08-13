@@ -5,6 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideApi } from './api';
 import { environment } from '../environments/environment';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
       anchorScrolling: 'enabled',
     })),
     provideHttpClient(),
-    provideApi(environment.apiBaseUrl),
+    provideApi(environment.apiBaseUrl), provideClientHydration(withEventReplay()),
   ]
 };

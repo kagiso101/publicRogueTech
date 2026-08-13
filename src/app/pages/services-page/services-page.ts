@@ -2,6 +2,7 @@ import {
   Component,
   AfterViewInit,
   ElementRef,
+  OnInit,
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
@@ -9,6 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Cta } from '../../features/home/cta/cta';
 import { ConsultationModalService } from '../../shared/services/consultation-modal.service';
+import { SeoService } from '../../shared/services/seo.service';
 import { LeadRequestProjectTypeEnum } from '../../api/model/leadRequest';
 
 interface ServiceOffering {
@@ -35,12 +37,22 @@ interface ServiceOffering {
   templateUrl: './services-page.html',
   styleUrl: './services-page.scss',
 })
-export class ServicesPage implements AfterViewInit {
+export class ServicesPage implements OnInit, AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private el: ElementRef,
-    private consultationModal: ConsultationModalService
+    private consultationModal: ConsultationModalService,
+    private seo: SeoService
   ) {}
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Web Development Services Cape Town | RogueTech',
+      description:
+        'Website design, custom web apps, SaaS builds, consulting and care plans. Transparent pricing from R8,500 — see what RogueTech can build for you.',
+      path: '/services',
+    });
+  }
 
   openConsultation(service: ServiceOffering): void {
     this.consultationModal.open(service.consultationType);

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'rt-footer',
@@ -13,11 +13,15 @@ export class FooterComponent {
   year = new Date().getFullYear();
   isVisible = false;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
   ngOnDestroy(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     window.removeEventListener('scroll', this.onScroll.bind(this));
   }
 

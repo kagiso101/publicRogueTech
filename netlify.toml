@@ -4,3 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "24"
+
+# Canonical host: apex, https. (http -> https is automatic on Netlify.)
+[[redirects]]
+  from = "https://www.rogue-tech.co.za/*"
+  to = "https://rogue-tech.co.za/:splat"
+  status = 301
+  force = true

@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LeadsFacade } from '../../store/leads/leads.facade';
+import { SeoService } from '../../shared/services/seo.service';
 import { WizardProgressComponent } from '../../shared/components/wizard-progress/wizard-progress';
 import { Step1ProjectTypeComponent } from './steps/step1-project-type/step1-project-type';
 import { Step2BusinessComponent } from './steps/step2-business/step2-business';
@@ -26,9 +27,19 @@ import { CalendarBookingComponent } from './outcomes/calendar-booking/calendar-b
   templateUrl: './get-started-page.html',
   styleUrl: './get-started-page.scss',
 })
-export class GetStartedPage {
+export class GetStartedPage implements OnInit {
   private readonly router = inject(Router);
+  private readonly seo = inject(SeoService);
   readonly facade = inject(LeadsFacade);
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Get a Free Website Quote | RogueTech',
+      description:
+        'Tell us about your project in five quick steps and get a tailored quote for your website, web app or SaaS build — free, no obligation.',
+      path: '/get-started',
+    });
+  }
 
   goHome(): void {
     this.router.navigate(['/']);

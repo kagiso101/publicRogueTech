@@ -2,6 +2,7 @@ import {
   Component,
   AfterViewInit,
   ElementRef,
+  OnInit,
   PLATFORM_ID,
   Inject,
   signal,
@@ -10,6 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Cta } from '../../features/home/cta/cta';
 import { Packages } from '../../features/home/packages/packages';
+import { SeoService } from '../../shared/services/seo.service';
 
 
 interface AddOn {
@@ -41,11 +43,21 @@ interface PricingFaq {
   templateUrl: './pricing-page.html',
   styleUrl: './pricing-page.scss',
 })
-export class PricingPage implements AfterViewInit {
+export class PricingPage implements OnInit, AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef
+    private el: ElementRef,
+    private seo: SeoService
   ) {}
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Web Design Packages & Prices | RogueTech',
+      description:
+        'Four transparent packages: Bronze R8,500, Silver R22,000, Gold R55,000, Platinum from R120,000. No hidden costs — see exactly what each tier includes.',
+      path: '/pricing',
+    });
+  }
 
   comparisonOpen = signal(false);
   openFaqIndex = signal<number | null>(null);

@@ -1,1 +1,5 @@
-/*  /index.html  200
+# No SPA catch-all: every route is prerendered to a static HTML file, and
+# unknown paths must fall through to Netlify's 404.html with a real 404 status.
+
+# Legacy path used by older internal links — no /contact route exists.
+/contact  /get-started  301

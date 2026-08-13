@@ -2,12 +2,14 @@ import {
   Component,
   AfterViewInit,
   ElementRef,
+  OnInit,
   PLATFORM_ID,
   Inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Cta } from '../../features/home/cta/cta';
+import { SeoService } from '../../shared/services/seo.service';
 
 interface JourneyPhase {
   num: string;
@@ -32,11 +34,21 @@ interface Differentiator {
   templateUrl: './process-page.html',
   styleUrl: './process-page.scss',
 })
-export class ProcessPage implements AfterViewInit {
+export class ProcessPage implements OnInit, AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef
+    private el: ElementRef,
+    private seo: SeoService
   ) {}
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Our Web Development Process | RogueTech',
+      description:
+        'How RogueTech takes you from first call to launched product: discovery, design, weekly demos and a client dashboard that shows progress every day.',
+      path: '/process',
+    });
+  }
 
   phases: JourneyPhase[] = [
     {

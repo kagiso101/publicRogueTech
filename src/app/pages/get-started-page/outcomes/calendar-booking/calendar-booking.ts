@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, inject, viewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  PLATFORM_ID,
+  inject,
+  viewChild,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadsFacade } from '../../../../store/leads/leads.facade';
 
@@ -11,6 +20,7 @@ import { LeadsFacade } from '../../../../store/leads/leads.facade';
 })
 export class CalendarBookingComponent implements AfterViewInit, OnDestroy {
   private readonly router = inject(Router);
+  private readonly platformId = inject(PLATFORM_ID);
   readonly facade = inject(LeadsFacade);
 
   // Cal.com namespace + link
@@ -21,10 +31,12 @@ export class CalendarBookingComponent implements AfterViewInit, OnDestroy {
   readonly embedContainer = viewChild<ElementRef<HTMLDivElement>>('calEmbed');
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.initCalEmbed();
   }
 
   ngOnDestroy(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     // Defensive: remove the global Cal instance when navigating away
     const w = window as any;
     if (w.Cal?.ns?.[this.calNamespace]) {

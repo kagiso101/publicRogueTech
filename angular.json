@@ -22,7 +22,9 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": ["@angular/localize/init"],
+            "polyfills": [
+              "@angular/localize/init"
+            ],
             "outputPath": "dist/publicRogueTech",
             "outputMode": "static",
             "baseHref": "/",
@@ -36,7 +38,8 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "server": "src/main.server.ts"
           },
           "configurations": {
             "production": {

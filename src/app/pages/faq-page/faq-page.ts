@@ -2,6 +2,7 @@ import {
   Component,
   AfterViewInit,
   ElementRef,
+  OnInit,
   PLATFORM_ID,
   Inject,
   signal,
@@ -11,6 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Cta } from '../../features/home/cta/cta';
+import { SeoService } from '../../shared/services/seo.service';
 
 interface FaqItem {
   q: string;
@@ -33,11 +35,21 @@ interface FaqCategory {
   templateUrl: './faq-page.html',
   styleUrl: './faq-page.scss',
 })
-export class FaqPage implements AfterViewInit {
+export class FaqPage implements OnInit, AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef
+    private el: ElementRef,
+    private seo: SeoService
   ) {}
+
+  ngOnInit(): void {
+    this.seo.apply({
+      title: 'Web Development FAQ | RogueTech',
+      description:
+        'Answers on pricing, timelines, ownership, hosting and support for websites and web apps built by RogueTech in Cape Town.',
+      path: '/faq',
+    });
+  }
 
   searchQuery = signal('');
   activeCategory = signal<string>('all');
