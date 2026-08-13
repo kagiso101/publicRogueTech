@@ -10,6 +10,13 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LeadsFacade } from '../../../../store/leads/leads.facade';
 import { LeadRequestProjectTypeEnum } from '../../../../api/model/leadRequest';
+import {
+  PageCount,
+  WebappUserType,
+  SaasBuildType,
+  SaasValidation,
+  SaasMultiTenant,
+} from '../../../../shared/models/lead.model';
 
 @Component({
   selector: 'rt-step3-details',
@@ -47,9 +54,10 @@ export class Step3DetailsComponent implements OnInit {
   });
 
   readonly pageCountOptions = [
-    { value: 'ONE_TO_THREE', label: '1–3 pages' },
-    { value: 'FOUR_TO_EIGHT', label: '4–8 pages' },
-    { value: 'NINE_PLUS', label: '9+ pages' },
+    { value: PageCount.OneToThree, label: '1–3 pages' },
+    { value: PageCount.FiveToSeven, label: '5–7 pages' },
+    { value: PageCount.TenPlus, label: '10+ pages' },
+    { value: PageCount.Unsure, label: 'Not sure yet' },
   ];
 
   readonly websiteFeatureOptions = [
@@ -64,10 +72,10 @@ export class Step3DetailsComponent implements OnInit {
   ];
 
   readonly userTypeOptions = [
-    { value: 'INTERNAL_TEAM', label: 'Our internal team' },
-    { value: 'CUSTOMERS', label: 'Our customers' },
-    { value: 'PUBLIC', label: 'General public' },
-    { value: 'MIXED', label: 'Mix of users' },
+    { value: WebappUserType.Single, label: 'Just me' },
+    { value: WebappUserType.Team, label: 'Our internal team' },
+    { value: WebappUserType.Customers, label: 'Our customers' },
+    { value: WebappUserType.MultiTenant, label: 'Multiple companies / tenants' },
   ];
 
   readonly webappFeatureOptions = [
@@ -82,22 +90,21 @@ export class Step3DetailsComponent implements OnInit {
   ];
 
   readonly newOrRebuildOptions = [
-    { value: 'NEW', label: 'Building from scratch' },
-    { value: 'REBUILD', label: 'Rebuilding an existing product' },
-    { value: 'MIGRATE', label: 'Migrating from another platform' },
+    { value: SaasBuildType.New, label: 'Building from scratch' },
+    { value: SaasBuildType.Rebuild, label: 'Rebuilding or migrating an existing product' },
   ];
 
   readonly validationStageOptions = [
-    { value: 'IDEA', label: 'Just an idea' },
-    { value: 'VALIDATED', label: 'Validated with users' },
-    { value: 'EARLY_TRACTION', label: 'Early traction / paying customers' },
-    { value: 'SCALING', label: 'Already scaling' },
+    { value: SaasValidation.NoValidation, label: 'Just an idea' },
+    { value: SaasValidation.Talking, label: 'Talking to potential users' },
+    { value: SaasValidation.Waitlist, label: 'Have a waitlist' },
+    { value: SaasValidation.Paying, label: 'Have paying customers' },
   ];
 
   readonly multiTenantOptions = [
-    { value: 'YES', label: 'Yes, multi-tenant from day one' },
-    { value: 'NO', label: 'No, single-tenant for now' },
-    { value: 'UNSURE', label: 'Not sure yet' },
+    { value: SaasMultiTenant.Yes, label: 'Yes, multi-tenant from day one' },
+    { value: SaasMultiTenant.No, label: 'No, single-tenant for now' },
+    { value: SaasMultiTenant.Unsure, label: 'Not sure yet' },
   ];
 
   readonly activeForm = computed<FormGroup | null>(() => {

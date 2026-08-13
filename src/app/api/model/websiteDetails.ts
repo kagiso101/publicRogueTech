@@ -9,12 +9,12 @@
  */
 
 
-export interface WebsiteDetailsRequest { 
+export interface WebsiteDetails { 
     hasExistingSite?: boolean;
-    pageCount?: WebsiteDetailsRequestPageCountEnum;
+    pageCount?: WebsiteDetailsPageCountEnum;
     features?: Array<string>;
 }
-export enum WebsiteDetailsRequestPageCountEnum {
+export enum WebsiteDetailsPageCountEnum {
     OneToThree = 'ONE_TO_THREE',
     FiveToSeven = 'FIVE_TO_SEVEN',
     TenPlus = 'TEN_PLUS',

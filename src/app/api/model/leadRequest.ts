@@ -27,6 +27,7 @@ export interface LeadRequest {
     phone?: string;
     notes?: string;
     consentGiven: boolean;
+    website?: string;
     sourcePage?: string;
     utmSource?: string;
     utmMedium?: string;

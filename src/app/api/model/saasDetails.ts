@@ -9,23 +9,23 @@
  */
 
 
-export interface SaasDetailsRequest { 
-    newOrRebuild?: SaasDetailsRequestNewOrRebuildEnum;
-    validationStage?: SaasDetailsRequestValidationStageEnum;
+export interface SaasDetails { 
+    newOrRebuild?: SaasDetailsNewOrRebuildEnum;
+    validationStage?: SaasDetailsValidationStageEnum;
     yearOneCustomers?: string;
-    multiTenant?: SaasDetailsRequestMultiTenantEnum;
+    multiTenant?: SaasDetailsMultiTenantEnum;
 }
-export enum SaasDetailsRequestNewOrRebuildEnum {
+export enum SaasDetailsNewOrRebuildEnum {
     New = 'NEW',
     Rebuild = 'REBUILD'
 };
-export enum SaasDetailsRequestValidationStageEnum {
+export enum SaasDetailsValidationStageEnum {
     NoValidation = 'NO_VALIDATION',
     Talking = 'TALKING',
     Waitlist = 'WAITLIST',
     Paying = 'PAYING'
 };
-export enum SaasDetailsRequestMultiTenantEnum {
+export enum SaasDetailsMultiTenantEnum {
     Yes = 'YES',
     No = 'NO',
     Unsure = 'UNSURE'

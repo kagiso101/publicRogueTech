@@ -9,12 +9,12 @@
  */
 
 
-export interface WebappDetailsRequest { 
-    problemStatement: string;
-    userType?: WebappDetailsRequestUserTypeEnum;
+export interface WebappDetails { 
+    problemStatement?: string;
+    userType?: WebappDetailsUserTypeEnum;
     features?: Array<string>;
 }
-export enum WebappDetailsRequestUserTypeEnum {
+export enum WebappDetailsUserTypeEnum {
     Single = 'SINGLE',
     Team = 'TEAM',
     Customers = 'CUSTOMERS',

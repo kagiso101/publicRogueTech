@@ -3,6 +3,13 @@ import {
   LeadRequestStageEnum,
   LeadRequestTimelineEnum,
 } from '../../api/model/leadRequest';
+import { WebsiteDetailsRequestPageCountEnum } from '../../api/model/websiteDetailsRequest';
+import { WebappDetailsRequestUserTypeEnum } from '../../api/model/webappDetailsRequest';
+import {
+  SaasDetailsRequestNewOrRebuildEnum,
+  SaasDetailsRequestValidationStageEnum,
+  SaasDetailsRequestMultiTenantEnum,
+} from '../../api/model/saasDetailsRequest';
 import { LeadResponse } from '../../api/model/leadResponse';
 
 // ─── Re-export the API enums as state types (single source of truth) ───
@@ -15,26 +22,41 @@ export const BusinessStage = LeadRequestStageEnum;
 export type Timeline = LeadRequestTimelineEnum;
 export const Timeline = LeadRequestTimelineEnum;
 
+export type PageCount = WebsiteDetailsRequestPageCountEnum;
+export const PageCount = WebsiteDetailsRequestPageCountEnum;
+
+export type WebappUserType = WebappDetailsRequestUserTypeEnum;
+export const WebappUserType = WebappDetailsRequestUserTypeEnum;
+
+export type SaasBuildType = SaasDetailsRequestNewOrRebuildEnum;
+export const SaasBuildType = SaasDetailsRequestNewOrRebuildEnum;
+
+export type SaasValidation = SaasDetailsRequestValidationStageEnum;
+export const SaasValidation = SaasDetailsRequestValidationStageEnum;
+
+export type SaasMultiTenant = SaasDetailsRequestMultiTenantEnum;
+export const SaasMultiTenant = SaasDetailsRequestMultiTenantEnum;
+
 export type WizardStep = 1 | 2 | 3 | 4 | 5;
 
 // ─── Branched details ───
 export interface WebsiteDetails {
   hasExistingSite: boolean | null;
-  pageCount: string | null;
+  pageCount: PageCount | null;
   features: string[];
 }
 
 export interface WebappDetails {
   problemStatement: string;
-  userType: string | null;
+  userType: WebappUserType | null;
   features: string[];
 }
 
 export interface SaasDetails {
-  newOrRebuild: string | null;
-  validationStage: string | null;
+  newOrRebuild: SaasBuildType | null;
+  validationStage: SaasValidation | null;
   yearOneCustomers: string;
-  multiTenant: string | null;
+  multiTenant: SaasMultiTenant | null;
 }
 
 // ─── Universal answers ───
