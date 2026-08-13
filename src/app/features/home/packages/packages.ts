@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ConsultationModalService } from '../../../shared/services/consultation-modal.service';
+import { LeadRequestProjectTypeEnum } from '../../../api/model/leadRequest';
 
 interface Package {
   tier: 'Bronze' | 'Silver' | 'Gold' | 'Platinum';
@@ -10,6 +12,8 @@ interface Package {
   features: string[];
   featured: boolean;
   ctaLabel: string;
+  /** When true, the CTA opens the consultation modal instead of navigating. */
+  consultation?: boolean;
 }
 
 @Component({
@@ -88,6 +92,13 @@ export class Packages {
       ],
       featured: false,
       ctaLabel: 'Book a Strategy Call',
+      consultation: true,
     },
   ];
+
+  private readonly consultationModal = inject(ConsultationModalService);
+
+  openConsultation(): void {
+    this.consultationModal.open(LeadRequestProjectTypeEnum.Website);
+  }
 }

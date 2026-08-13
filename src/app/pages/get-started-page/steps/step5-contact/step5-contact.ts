@@ -32,6 +32,8 @@ export class Step5ContactComponent implements OnInit {
     phone: [''],
     notes: [''],
     consentGiven: [false, Validators.requiredTrue],
+    // Honeypot — visually hidden; the backend drops submissions that fill it
+    website: [''],
   });
 
   ngOnInit(): void {
@@ -86,6 +88,7 @@ export class Step5ContactComponent implements OnInit {
       notes: contact.notes || undefined,
       consentGiven: contact.consentGiven,
       sourcePage: '/get-started',
+      website: this.form.getRawValue().website || undefined,
     };
 
     switch (projectType) {

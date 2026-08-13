@@ -172,9 +172,9 @@
 
 .stack-dot {
   width: 6px; height: 6px;
-  background: #00CC66;
+  background: var(--rt-green);
   border-radius: 50%;
-  box-shadow: 0 0 8px rgba(0, 204, 102, 0.6);
+  box-shadow: 0 0 8px var(--rt-green-glow);
   animation: rt-pulse-dot 2s infinite;
 }
 
@@ -464,9 +464,11 @@
   align-items: center;
   gap: 12px;
   padding: 14px 28px;
+  background: transparent;
   border: 1px solid var(--rt-border);
   border-radius: var(--rt-radius-sm);
   align-self: flex-start;
+  cursor: pointer;
   transition: all 0.3s;
 
   svg { transition: transform 0.3s; }

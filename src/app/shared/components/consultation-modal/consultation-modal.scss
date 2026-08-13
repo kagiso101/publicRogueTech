@@ -1,0 +1,217 @@
+// ─── Consultation Modal ───
+@use '../../../styles/tokens' as *;
+
+.consult-modal {
+  position: relative;
+  padding: var(--rt-space-xl);
+}
+
+.consult-close {
+  position: absolute;
+  top: var(--rt-space-md);
+  right: var(--rt-space-md);
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--rt-border-subtle);
+  border-radius: var(--rt-radius-sm);
+  color: var(--rt-text-muted);
+  cursor: pointer;
+  transition: var(--rt-transition);
+
+  &:hover {
+    color: var(--rt-white);
+    border-color: var(--rt-red);
+    background: var(--rt-red-glow);
+  }
+}
+
+// ─── Header ───
+.consult-eyebrow {
+  @include eyebrow;
+  margin-bottom: var(--rt-space-md);
+}
+
+.consult-title {
+  @include display-title;
+  font-size: clamp(32px, 5vw, 44px);
+  margin-bottom: var(--rt-space-md);
+
+  span { color: var(--rt-red); }
+}
+
+.consult-sub {
+  color: var(--rt-text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: var(--rt-space-lg);
+  max-width: 440px;
+}
+
+// ─── Form ───
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rt-space-md);
+  margin-bottom: var(--rt-space-md);
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-family: var(--rt-font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rt-text-muted);
+
+    .optional {
+      text-transform: none;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: var(--rt-font-body);
+    font-size: 15px;
+    color: var(--rt-text);
+    background: var(--rt-card);
+    border: 1px solid var(--rt-border-subtle);
+    border-radius: var(--rt-radius-sm);
+    padding: 12px 14px;
+    outline: none;
+    transition: var(--rt-transition);
+    width: 100%;
+
+    &::placeholder { color: rgba(136, 136, 136, 0.6); }
+
+    &:focus {
+      border-color: var(--rt-red);
+      box-shadow: 0 0 0 3px var(--rt-red-glow);
+    }
+
+    &.invalid {
+      border-color: var(--rt-red-bright);
+    }
+  }
+
+  select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%23888888' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+
+    option {
+      background: var(--rt-card);
+      color: var(--rt-text);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+}
+
+.field-error {
+  font-size: 12px;
+  color: var(--rt-red-bright);
+}
+
+// ─── Consent ───
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: var(--rt-space-md) 0;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--rt-text-muted);
+  line-height: 1.5;
+
+  input[type='checkbox'] {
+    accent-color: var(--rt-red);
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  &.invalid span { color: var(--rt-red-bright); }
+}
+
+.submit-error {
+  font-size: 13px;
+  color: var(--rt-red-bright);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-sm);
+  background: rgba(204, 0, 0, 0.08);
+  padding: 10px 14px;
+  margin-bottom: var(--rt-space-md);
+}
+
+.consult-submit {
+  @include btn-base;
+  width: 100%;
+  font-size: 15px;
+  padding: 16px 40px;
+  background: var(--rt-red);
+  color: var(--rt-white);
+
+  &:hover:not(:disabled) {
+    background: var(--rt-red-bright);
+    box-shadow: 0 16px 40px var(--rt-red-glow);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+}
+
+// ─── Success state ───
+.consult-success {
+  text-align: center;
+  padding: var(--rt-space-lg) 0;
+
+  .success-icon {
+    @include flex-center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--rt-space-lg);
+    border-radius: 50%;
+    border: 1px solid var(--rt-red);
+    background: var(--rt-red-glow);
+    color: var(--rt-red-bright);
+  }
+
+  .consult-sub {
+    margin: 0 auto var(--rt-space-lg);
+  }
+
+  .consult-submit {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+@include respond-to(sm) {
+  .consult-modal {
+    padding: var(--rt-space-lg);
+  }
+}

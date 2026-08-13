@@ -8,6 +8,8 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Cta } from '../../features/home/cta/cta';
+import { ConsultationModalService } from '../../shared/services/consultation-modal.service';
+import { LeadRequestProjectTypeEnum } from '../../api/model/leadRequest';
 
 interface ServiceOffering {
   num: string;
@@ -21,6 +23,8 @@ interface ServiceOffering {
   startingFrom: string;
   ctaLabel: string;
   ctaLink: string;
+  /** When set, the CTA opens the consultation modal (pre-filled) instead of navigating. */
+  consultationType?: LeadRequestProjectTypeEnum;
   icon: string;
 }
 
@@ -34,8 +38,13 @@ interface ServiceOffering {
 export class ServicesPage implements AfterViewInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef
+    private el: ElementRef,
+    private consultationModal: ConsultationModalService
   ) {}
+
+  openConsultation(service: ServiceOffering): void {
+    this.consultationModal.open(service.consultationType);
+  }
 
   services: ServiceOffering[] = [
     {
@@ -84,6 +93,7 @@ export class ServicesPage implements AfterViewInit {
       startingFrom: 'R55,000',
       ctaLabel: 'Discuss a Web App Project',
       ctaLink: '/contact',
+      consultationType: LeadRequestProjectTypeEnum.Webapp,
       icon: 'M4 6h16v12H4z M4 10h16 M9 14h6',
     },
     {
@@ -108,6 +118,7 @@ export class ServicesPage implements AfterViewInit {
       startingFrom: 'R120,000',
       ctaLabel: 'Book a Strategy Call',
       ctaLink: '/contact',
+      consultationType: LeadRequestProjectTypeEnum.Saas,
       icon: 'M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z',
     },
     {
@@ -131,6 +142,7 @@ export class ServicesPage implements AfterViewInit {
       startingFrom: 'Quoted per engagement',
       ctaLabel: 'Book a Consultation',
       ctaLink: '/contact',
+      consultationType: LeadRequestProjectTypeEnum.Unsure,
       icon: 'M12 2L3 9l9 7 9-7-9-7z M3 14l9 7 9-7',
     },
     {
@@ -154,6 +166,7 @@ export class ServicesPage implements AfterViewInit {
       startingFrom: 'R450/month',
       ctaLabel: 'Talk About Add-Ons',
       ctaLink: '/contact',
+      consultationType: LeadRequestProjectTypeEnum.Unsure,
       icon: 'M12 2v20 M2 12h20 M5 5l14 14 M19 5L5 19',
     },
   ];

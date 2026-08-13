@@ -5,6 +5,21 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
 
+    <!-- Honeypot — hidden from humans; bots that fill it are silently dropped -->
+    <div
+      style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden"
+      aria-hidden="true"
+    >
+      <label for="gs-website">Website</label>
+      <input
+        id="gs-website"
+        type="text"
+        formControlName="website"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
     <!-- Full Name -->
     <div class="field" [class.invalid]="isInvalid('fullName')">
       <label for="fullName">Full Name</label>

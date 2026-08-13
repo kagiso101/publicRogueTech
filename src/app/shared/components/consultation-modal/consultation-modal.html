@@ -1,0 +1,216 @@
+<div class="consult-modal">
+  <button
+    type="button"
+    class="consult-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('close')"
+  >
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  @if (!submitted()) {
+    <div class="consult-header">
+      <div class="consult-eyebrow">Free Consultation</div>
+      <h2 class="consult-title">Let's talk about<br><span>your business.</span></h2>
+      <p class="consult-sub">
+        No commitment. Tell us a little about yourself and we will be in touch
+        within 24 hours to set up an honest conversation.
+      </p>
+    </div>
+
+    <form class="consult-form" [formGroup]="form" (ngSubmit)="submit()">
+      <!-- Honeypot — hidden from humans; bots that fill it are silently dropped -->
+      <div
+        style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden"
+        aria-hidden="true"
+      >
+        <label for="cm-website">Website</label>
+        <input
+          id="cm-website"
+          type="text"
+          formControlName="website"
+          tabindex="-1"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="cm-fullName">Full Name *</label>
+          <input
+            id="cm-fullName"
+            type="text"
+            formControlName="fullName"
+            placeholder="Your name"
+            autocomplete="name"
+            ngbAutofocus
+            [class.invalid]="isInvalid('fullName')"
+          />
+          @if (isInvalid('fullName')) {
+            <span class="field-error">Please enter your name.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cm-email">Email *</label>
+          <input
+            id="cm-email"
+            type="email"
+            formControlName="email"
+            placeholder="you@company.co.za"
+            autocomplete="email"
+            [class.invalid]="isInvalid('email')"
+          />
+          @if (isInvalid('email')) {
+            <span class="field-error">Please enter a valid email address.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cm-phone">Phone <span class="optional">(optional)</span></label>
+          <input
+            id="cm-phone"
+            type="tel"
+            formControlName="phone"
+            placeholder="+27 ..."
+            autocomplete="tel"
+          />
+        </div>
+
+        <div class="form-field">
+          <label for="cm-businessName">Business Name *</label>
+          <input
+            id="cm-businessName"
+            type="text"
+            formControlName="businessName"
+            placeholder="Your business"
+            autocomplete="organization"
+            [class.invalid]="isInvalid('businessName')"
+          />
+          @if (isInvalid('businessName')) {
+            <span class="field-error">Please enter your business name.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cm-industry">Industry *</label>
+          <input
+            id="cm-industry"
+            type="text"
+            formControlName="industry"
+            placeholder="e.g. Retail, Legal, Beauty"
+            [class.invalid]="isInvalid('industry')"
+          />
+          @if (isInvalid('industry')) {
+            <span class="field-error">Please tell us your industry.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cm-stage">Where Are You Today? *</label>
+          <select
+            id="cm-stage"
+            formControlName="stage"
+            [class.invalid]="isInvalid('stage')"
+          >
+            <option [ngValue]="null" disabled>Select...</option>
+            @for (opt of stageOptions; track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid('stage')) {
+            <span class="field-error">Please pick the closest match.</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="cm-projectType">What Do You Need? *</label>
+          <select id="cm-projectType" formControlName="projectType">
+            @for (opt of projectTypeOptions; track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="cm-timeline">How Soon? *</label>
+          <select
+            id="cm-timeline"
+            formControlName="timeline"
+            [class.invalid]="isInvalid('timeline')"
+          >
+            <option [ngValue]="null" disabled>Select...</option>
+            @for (opt of timelineOptions; track opt.value) {
+              <option [ngValue]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+          @if (isInvalid('timeline')) {
+            <span class="field-error">Please pick a rough timeline.</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="cm-notes">Anything You Want To Discuss? <span class="optional">(optional)</span></label>
+        <textarea
+          id="cm-notes"
+          rows="3"
+          formControlName="notes"
+          placeholder="Goals, questions, or anything we should know before the call."
+        ></textarea>
+      </div>
+
+      <label class="consent-row" [class.invalid]="isInvalid('consentGiven')">
+        <input type="checkbox" formControlName="consentGiven" />
+        <span>I agree to be contacted by RogueTech about my enquiry. *</span>
+      </label>
+
+      @if (submitError()) {
+        <div class="submit-error">{{ submitError() }}</div>
+      }
+
+      <button type="submit" class="consult-submit" [disabled]="submitting()">
+        {{ submitting() ? 'Sending...' : 'Book My Free Consultation' }}
+      </button>
+    </form>
+  } @else {
+    <div class="consult-success">
+      <div class="success-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2 class="consult-title">Request<br><span>received.</span></h2>
+      @if (calendarRequired()) {
+        <p class="consult-sub">
+          Your project deserves a real conversation — skip the queue and book
+          your free strategy call right now.
+        </p>
+        <a
+          class="consult-submit"
+          [href]="bookingUrl"
+          target="_blank"
+          rel="noopener"
+          (click)="activeModal.close('booking')"
+        >
+          Book My Strategy Call
+        </a>
+      } @else {
+        <p class="consult-sub">
+          Thanks — we will be in touch within 24 hours to set up your free
+          consultation. No commitment, just an honest conversation.
+        </p>
+        <button type="button" class="consult-submit" (click)="activeModal.close('done')">
+          Done
+        </button>
+      }
+    </div>
+  }
+</div>

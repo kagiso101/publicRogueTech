@@ -29,7 +29,13 @@
             <li>{{ feature }}</li>
           }
         </ul>
-        <a routerLink="/contact" class="btn-package">{{ pkg.ctaLabel }}</a>
+        @if (pkg.consultation) {
+          <button type="button" class="btn-package" (click)="openConsultation()">
+            {{ pkg.ctaLabel }}
+          </button>
+        } @else {
+          <a routerLink="/contact" class="btn-package">{{ pkg.ctaLabel }}</a>
+        }
       </div>
     }
   </div>

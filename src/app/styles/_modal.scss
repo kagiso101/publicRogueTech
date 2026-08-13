@@ -1,0 +1,101 @@
+// ─── RogueTech Modal Styles (ng-bootstrap) ───
+// ng-bootstrap renders Bootstrap's modal markup but ships no CSS of its own.
+// Bootstrap's stylesheet is NOT imported (it would fight our design system),
+// so the structural classes NgbModal expects are defined here, themed with
+// RogueTech tokens.
+
+@use 'tokens' as *;
+
+// Utility class ng-bootstrap puts on the modal window element; !important
+// (as in Bootstrap) so it wins over .modal { display: none } below.
+.d-block {
+  display: block !important;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.fade {
+  transition: opacity 0.25s ease;
+
+  &:not(.show) {
+    opacity: 0;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  // ng-bootstrap sets an inline z-index: 1055 (Bootstrap's scale) on the
+  // backdrop element; !important pulls it back under our modal layer.
+  z-index: calc(var(--rt-z-modal) - 1) !important;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--rt-z-modal);
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+
+  &.fade .modal-dialog {
+    transform: translateY(-24px) scale(0.98);
+    transition: var(--rt-transition-slow);
+  }
+
+  &.show .modal-dialog {
+    transform: none;
+  }
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  max-width: 640px;
+  margin: var(--rt-space-lg) auto;
+  padding: 0 var(--rt-space-md);
+  pointer-events: none;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - (var(--rt-space-lg) * 2));
+}
+
+.modal-dialog-scrollable {
+  height: calc(100% - (var(--rt-space-lg) * 2));
+
+  .modal-content {
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+
+.modal-sm  { max-width: 420px; }
+.modal-lg,
+.modal-xl  { max-width: 800px; }
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background: var(--rt-dark);
+  border: 1px solid var(--rt-border);
+  border-radius: var(--rt-radius-lg);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65), 0 0 60px var(--rt-red-glow);
+  outline: 0;
+}
+
+@include respond-to(sm) {
+  .modal-dialog {
+    margin: var(--rt-space-md) auto;
+    padding: 0 var(--rt-space-sm);
+  }
+}
