@@ -1,6 +1,7 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 
 @Component({
   selector: 'rt-footer',
@@ -13,7 +14,13 @@ export class FooterComponent {
   year = new Date().getFullYear();
   isVisible = false;
 
+  private readonly analytics = inject(AnalyticsService);
+
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
+  trackContact(method: 'email' | 'whatsapp'): void {
+    this.analytics.event('contact_click', { method });
+  }
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;

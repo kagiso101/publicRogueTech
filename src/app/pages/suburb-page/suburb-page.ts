@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Cta } from '../../features/home/cta/cta';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 import { SeoService, SITE_URL } from '../../shared/services/seo.service';
 import { SUBURBS, SuburbContent, getSuburb } from './suburb-content';
 
@@ -24,6 +25,7 @@ const JSON_LD_ID = 'suburb-service-schema';
 export class SuburbPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
+  private readonly analytics = inject(AnalyticsService);
 
   readonly suburb = signal<SuburbContent | null>(null);
   readonly otherSuburbs = signal<SuburbContent[]>([]);
@@ -69,6 +71,10 @@ export class SuburbPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.removeJsonLd(JSON_LD_ID);
+  }
+
+  trackContact(method: 'email' | 'whatsapp'): void {
+    this.analytics.event('contact_click', { method });
   }
 
   private applySeo(content: SuburbContent): void {

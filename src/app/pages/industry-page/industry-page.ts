@@ -2,6 +2,7 @@ import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Cta } from '../../features/home/cta/cta';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 import { SeoService, SITE_URL } from '../../shared/services/seo.service';
 import { INDUSTRIES, IndustryContent, getIndustry } from './industry-content';
 
@@ -17,6 +18,7 @@ const JSON_LD_ID = 'industry-faq-schema';
 export class IndustryPage implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
+  private readonly analytics = inject(AnalyticsService);
 
   readonly industry = signal<IndustryContent | null>(null);
   readonly otherIndustries = signal<IndustryContent[]>([]);
@@ -33,6 +35,10 @@ export class IndustryPage implements OnDestroy {
 
   ngOnDestroy(): void {
     this.seo.removeJsonLd(JSON_LD_ID);
+  }
+
+  trackContact(method: 'email' | 'whatsapp'): void {
+    this.analytics.event('contact_click', { method });
   }
 
   private applySeo(content: IndustryContent): void {
