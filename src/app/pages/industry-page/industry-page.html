@@ -1,0 +1,92 @@
+@if (industry(); as ind) {
+  <div class="industry-page">
+
+    <!-- ─── Hero ─── -->
+    <section class="industry-hero">
+      <div class="hero-bg"></div>
+      <div class="container">
+        <p class="section-eyebrow">Industry · South Africa</p>
+        <h1>{{ ind.h1 }}</h1>
+        @for (paragraph of ind.intro; track $index) {
+          <p class="intro">{{ paragraph }}</p>
+        }
+        <div class="hero-actions">
+          <a routerLink="/get-started" class="btn-primary">Get a Free Quote</a>
+          <!-- TODO(Kagiso): swap for a wa.me/<number> link once the WhatsApp number is confirmed -->
+          <a href="mailto:info@rogue-tech.co.za" class="btn-outline">info&#64;rogue-tech.co.za</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Industry sections ─── -->
+    @for (section of ind.sections; track section.heading; let i = $index) {
+      <section class="industry-section" [class.alt]="i % 2 === 0">
+        <div class="container">
+          <h2>{{ section.heading }}</h2>
+          @for (paragraph of section.paragraphs; track $index) {
+            <p>{{ paragraph }}</p>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- ─── Package recommendation ─── -->
+    <section class="industry-section">
+      <div class="container">
+        <h2>{{ ind.packageRec.heading }}</h2>
+        @for (paragraph of ind.packageRec.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+        <p class="positioning">
+          More solid than a R500 template, half the price of the big agencies.
+          <a routerLink="/website-design-prices-cape-town">See what websites really cost →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Bookvas cross-sell ─── -->
+    @if (ind.bookr; as bookr) {
+      <section class="industry-section bookr">
+        <div class="container">
+          <h2>{{ bookr.heading }}</h2>
+          @for (paragraph of bookr.paragraphs; track $index) {
+            <p>{{ paragraph }}</p>
+          }
+          <div class="hero-actions">
+            <a routerLink="/get-started" class="btn-primary">Start Your Project</a>
+            <a routerLink="/pricing" class="btn-outline">View Packages</a>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- ─── FAQ ─── -->
+    <section class="industry-section faq">
+      <div class="container">
+        <h2>Frequently asked questions</h2>
+        @for (faq of ind.faqs; track faq.q) {
+          <details>
+            <summary>{{ faq.q }}</summary>
+            <p>{{ faq.a }}</p>
+          </details>
+        }
+      </div>
+    </section>
+
+    <!-- ─── Related pages ─── -->
+    <section class="industry-section related">
+      <div class="container">
+        <h2>More from RogueTech</h2>
+        <ul class="related-links">
+          @for (other of otherIndustries(); track other.slug) {
+            <li><a [routerLink]="'/' + other.slug">{{ other.h1 }}</a></li>
+          }
+          <li><a routerLink="/website-design-prices-cape-town">Website Design Prices in Cape Town</a></li>
+          <li><a routerLink="/pricing">Our packages in full</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <app-cta />
+  </div>
+}

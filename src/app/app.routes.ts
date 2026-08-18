@@ -8,6 +8,7 @@ import { FaqPage } from './pages/faq-page/faq-page';
 import { GetStartedPage } from './pages/get-started-page/get-started-page';
 import { SuburbPage } from './pages/suburb-page/suburb-page';
 import { PricingArticlePage } from './pages/pricing-article-page/pricing-article-page';
+import { IndustryPage } from './pages/industry-page/industry-page';
 
 // Page titles/descriptions/canonicals are owned by SeoService inside each
 // routed component (kept there so they stay in sync with the OG tags).
@@ -69,6 +70,22 @@ export const routes: Routes = [
       {
         path: 'website-design-prices-cape-town',
         component: PricingArticlePage,
+      },
+      // ─── Industry pages (content in industry-content.ts) ───
+      {
+        path: 'websites-for-salons',
+        component: IndustryPage,
+        data: { industry: 'websites-for-salons' },
+      },
+      {
+        path: 'websites-for-wellness',
+        component: IndustryPage,
+        data: { industry: 'websites-for-wellness' },
+      },
+      {
+        path: 'booking-websites',
+        component: IndustryPage,
+        data: { industry: 'booking-websites' },
       },
     ],
   },

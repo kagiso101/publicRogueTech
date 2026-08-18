@@ -1,0 +1,157 @@
+@use '../../styles/tokens' as *;
+
+.industry-page {
+  background: var(--rt-black);
+  color: var(--rt-text);
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 var(--rt-space-xl);
+}
+
+.section-eyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+// ─── Hero ───
+.industry-hero {
+  position: relative;
+  padding: 160px 0 72px;
+  overflow: hidden;
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 20%,
+        rgba(204, 0, 0, 0.16) 0%, transparent 60%),
+      linear-gradient(180deg, var(--rt-black) 0%, var(--rt-dark) 100%);
+  }
+
+  .container { position: relative; z-index: 1; }
+
+  h1 {
+    font-family: var(--rt-font-display);
+    font-size: clamp(32px, 4.6vw, 52px);
+    line-height: 1.08;
+    margin: 0 0 24px;
+  }
+
+  .intro {
+    color: var(--rt-text-muted);
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 16px;
+    max-width: 720px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.btn-primary,
+.btn-outline {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: var(--rt-radius-sm);
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: var(--rt-red);
+  color: #fff;
+  &:hover { background: var(--rt-red-dim); }
+}
+
+.btn-outline {
+  border: 1px solid var(--rt-border);
+  color: var(--rt-text);
+  &:hover { border-color: var(--rt-red); }
+}
+
+// ─── Sections ───
+.industry-section {
+  padding: 64px 0;
+
+  &.alt { background: var(--rt-dark); }
+
+  h2 {
+    font-family: var(--rt-font-display);
+    font-size: clamp(24px, 3vw, 34px);
+    margin: 0 0 20px;
+  }
+
+  p {
+    color: var(--rt-text-muted);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 16px;
+    max-width: 720px;
+  }
+}
+
+.positioning {
+  border-left: 3px solid var(--rt-red);
+  padding-left: 16px;
+  color: var(--rt-text);
+
+  a {
+    display: block;
+    margin-top: 8px;
+    color: var(--rt-red);
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ─── Bookvas block ───
+.industry-section.bookr {
+  background: var(--rt-dark);
+  border-top: 1px solid var(--rt-border);
+  border-bottom: 1px solid var(--rt-border);
+}
+
+// ─── FAQ ───
+.industry-section.faq details {
+  border: 1px solid var(--rt-border-subtle);
+  border-radius: var(--rt-radius-sm);
+  background: var(--rt-card);
+  margin-bottom: 10px;
+  padding: 0 20px;
+
+  summary {
+    cursor: pointer;
+    padding: 16px 0;
+    font-weight: 600;
+    color: var(--rt-text);
+    list-style: none;
+
+    &::-webkit-details-marker { display: none; }
+    &::after { content: '+'; float: right; color: var(--rt-red); }
+  }
+
+  &[open] summary::after { content: '–'; }
+
+  p { padding-bottom: 16px; }
+}
+
+// ─── Related links ───
+.related .related-links {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 12px;
+
+  a {
+    color: var(--rt-text-muted);
+    transition: color 0.3s;
+    &:hover { color: var(--rt-red); }
+  }
+}
