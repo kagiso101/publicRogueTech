@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Cta } from '../../features/home/cta/cta';
+import { Cta } from '../../shared/components/cta/cta';
 import { AnalyticsService } from '../../shared/services/analytics.service';
 import { environment } from '../../../environments/environment';
 import { SeoService, SITE_URL } from '../../shared/services/seo.service';

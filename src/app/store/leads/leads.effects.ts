@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { signalStoreFeature, type } from '@ngrx/signals';
 import { Events, withEventHandlers } from '@ngrx/signals/events';
-import { switchMap, map, catchError, of, from, Observable, tap } from 'rxjs';
+import { switchMap, map, catchError, of, from, Observable } from 'rxjs';
 import { LeadControllerService } from '../../api';
 import { leadsEvents } from './leads.events';
 import { LeadResponse } from '../../api/model/leadResponse';

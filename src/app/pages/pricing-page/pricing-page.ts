@@ -1,18 +1,9 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  OnInit,
-  PLATFORM_ID,
-  Inject,
-  signal,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Cta } from '../../features/home/cta/cta';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { Cta } from '../../shared/components/cta/cta';
 import { Packages } from '../../features/home/packages/packages';
 import { SeoService } from '../../shared/services/seo.service';
-
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { faqsFor } from '../../shared/content/faq-content';
 
 interface AddOn {
   name: string;
@@ -31,24 +22,16 @@ interface ComparisonRow {
   platinum: string | boolean;
 }
 
-interface PricingFaq {
-  q: string;
-  a: string;
-}
-
 @Component({
   selector: 'rt-pricing-page',
   standalone: true,
   imports: [Packages, Cta],
   templateUrl: './pricing-page.html',
   styleUrl: './pricing-page.scss',
+  hostDirectives: [ScrollRevealDirective],
 })
-export class PricingPage implements OnInit, AfterViewInit {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef,
-    private seo: SeoService
-  ) {}
+export class PricingPage implements OnInit {
+  private readonly seo = inject(SeoService);
 
   ngOnInit(): void {
     this.seo.apply({
@@ -237,56 +220,6 @@ export class PricingPage implements OnInit, AfterViewInit {
     'Advertising spend on platforms like Google Ads, Meta, LinkedIn',
   ];
 
-  // ─── PRICING-SPECIFIC FAQ ───
-  pricingFaqs: PricingFaq[] = [
-    {
-      q: 'Why is the project a one-off fee instead of a subscription?',
-      a: 'Because you should own what you pay for. Subscription website packages lock clients into ongoing commitments for work that has already been delivered. We build it, you own it, and any ongoing services are entirely your choice.',
-    },
-    {
-      q: 'Are there any hidden costs?',
-      a: 'No. The project fee covers the full build as scoped. Domain and hosting are paid by you directly to your providers (we advise on selection and handle setup). Add-ons are clearly priced and never required. Any change in scope is quoted before any work happens.',
-    },
-    {
-      q: 'When do I pay?',
-      a: 'A 50% deposit is invoiced at project kickoff to begin work. The remaining 50% is invoiced at launch. For Platinum and larger projects, payment is structured around milestones — discussed during the proposal phase.',
-    },
-    {
-      q: 'What payment methods do you accept?',
-      a: 'EFT bank transfer to a South African business account. For international clients, wire transfer in USD or EUR. All invoices include 15% VAT where applicable.',
-    },
-    {
-      q: 'Can I start small and upgrade later?',
-      a: 'Yes. Many clients begin with Bronze or Silver and grow into Gold as their business expands. We credit work already delivered so you only pay the difference plus any new scope.',
-    },
-    {
-      q: 'What happens if I want to cancel mid-project?',
-      a: 'You can stop a project at any point. You pay only for the work completed up to that point and you receive everything we have built so far. We do not lock you into completing a project you no longer want.',
-    },
-    {
-      q: 'Do prices include VAT?',
-      a: 'All prices listed are exclusive of VAT. Standard South African VAT (15%) is added to the final invoice where applicable.',
-    },
-  ];
-
-  // ─── LIFECYCLE ───
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.initScrollReveal();
-    }
-  }
-
-  private initScrollReveal(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('rt-visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    this.el.nativeElement
-      .querySelectorAll('.rt-reveal')
-      .forEach((el: Element) => observer.observe(el));
-  }
+  // ─── PRICING FAQ (from the shared catalogue) ───
+  readonly pricingFaqs = faqsFor('pricing');
 }

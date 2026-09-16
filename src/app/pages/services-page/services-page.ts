@@ -1,14 +1,7 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  OnInit,
-  PLATFORM_ID,
-  Inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Cta } from '../../features/home/cta/cta';
+import { Cta } from '../../shared/components/cta/cta';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { ConsultationModalService } from '../../shared/services/consultation-modal.service';
 import { SeoService } from '../../shared/services/seo.service';
 import { LeadRequestProjectTypeEnum } from '../../api/model/leadRequest';
@@ -39,14 +32,11 @@ interface ServiceOffering {
   imports: [RouterLink, Cta],
   templateUrl: './services-page.html',
   styleUrl: './services-page.scss',
+  hostDirectives: [ScrollRevealDirective],
 })
-export class ServicesPage implements OnInit, AfterViewInit {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef,
-    private consultationModal: ConsultationModalService,
-    private seo: SeoService
-  ) {}
+export class ServicesPage implements OnInit {
+  private readonly consultationModal = inject(ConsultationModalService);
+  private readonly seo = inject(SeoService);
 
   ngOnInit(): void {
     this.seo.apply({
@@ -193,24 +183,4 @@ export class ServicesPage implements OnInit, AfterViewInit {
       icon: 'M12 2v20 M2 12h20 M5 5l14 14 M19 5L5 19',
     },
   ];
-
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.initScrollReveal();
-    }
-  }
-
-  private initScrollReveal(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('rt-visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    this.el.nativeElement
-      .querySelectorAll('.rt-reveal')
-      .forEach((el: Element) => observer.observe(el));
-  }
 }

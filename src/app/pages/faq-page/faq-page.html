@@ -82,7 +82,7 @@
     </div>
 
     <div class="featured-grid">
-      @for (faq of featuredFaqs(); track faq.q; let i = $index) {
+      @for (faq of featuredFaqs; track faq.q; let i = $index) {
         <article class="featured-card rt-reveal"
                  [style.transition-delay]="(i * 0.08) + 's'"
                  (click)="toggleFaq(faqId(faq))"

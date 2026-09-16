@@ -1,14 +1,6 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  OnInit,
-  PLATFORM_ID,
-  Inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { Cta } from '../../features/home/cta/cta';
+import { Component, OnInit, inject } from '@angular/core';
+import { Cta } from '../../shared/components/cta/cta';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { SeoService } from '../../shared/services/seo.service';
 
 interface JourneyPhase {
@@ -33,13 +25,10 @@ interface Differentiator {
   imports: [Cta],
   templateUrl: './process-page.html',
   styleUrl: './process-page.scss',
+  hostDirectives: [ScrollRevealDirective],
 })
-export class ProcessPage implements OnInit, AfterViewInit {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private el: ElementRef,
-    private seo: SeoService
-  ) {}
+export class ProcessPage implements OnInit {
+  private readonly seo = inject(SeoService);
 
   ngOnInit(): void {
     this.seo.apply({
@@ -199,24 +188,4 @@ export class ProcessPage implements OnInit, AfterViewInit {
         'Every engagement operates under South African law and is compliant with POPIA, CPA, and ECTA. You receive a formal service agreement before any work begins — not a verbal handshake.',
     },
   ];
-
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.initScrollReveal();
-    }
-  }
-
-  private initScrollReveal(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('rt-visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    this.el.nativeElement
-      .querySelectorAll('.rt-reveal')
-      .forEach((el: Element) => observer.observe(el));
-  }
 }

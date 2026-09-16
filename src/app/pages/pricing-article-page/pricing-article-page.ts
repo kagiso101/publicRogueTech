@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Cta } from '../../features/home/cta/cta';
-import { SeoService, SITE_URL } from '../../shared/services/seo.service';
+import { Cta } from '../../shared/components/cta/cta';
+import { SeoService } from '../../shared/services/seo.service';
 
 interface ArticleFaq {
   q: string;
