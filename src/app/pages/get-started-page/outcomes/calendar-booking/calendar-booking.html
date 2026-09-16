@@ -16,10 +16,22 @@
     <code>{{ facade.submission()?.id }}</code>
   </div>
 
-  <!-- Cal.com embed mounts inside this div -->
-  <div class="cal-embed" #calEmbed></div>
+  @if (embedFailed()) {
+    <div class="embed-fallback">
+      <p>
+        The booking calendar couldn't load. No problem — you already have a confirmation
+        email on its way, and you can reply to it (or email
+        <a href="mailto:info@rogue-tech.co.za?subject=Strategy%20call%20{{ facade.submission()?.id }}">info&#64;rogue-tech.co.za</a>)
+        with a couple of times that suit you.
+      </p>
+      <a class="rt-btn" [href]="bookingUrl" target="_blank" rel="noopener">Try the calendar in a new tab</a>
+    </div>
+  } @else {
+    <!-- Cal.com embed mounts inside this div -->
+    <div class="cal-embed" #calEmbed></div>
+  }
 
   <button class="rt-btn-secondary" (click)="goHome()">
-    Back to RogueTech
+    Back to ROGUETECHNOLOGIES
   </button>
 </div>

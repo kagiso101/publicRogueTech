@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Cta } from '../../features/home/cta/cta';
 import { AnalyticsService } from '../../shared/services/analytics.service';
+import { environment } from '../../../environments/environment';
 import { SeoService, SITE_URL } from '../../shared/services/seo.service';
 import { SUBURBS, SuburbContent, getSuburb } from './suburb-content';
 
@@ -26,6 +27,10 @@ export class SuburbPage implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly seo = inject(SeoService);
   private readonly analytics = inject(AnalyticsService);
+
+  /** Empty until the WhatsApp number is set in environment.ts; the template falls back to email. */
+  readonly whatsappUrl = environment.whatsappNumber ? `https://wa.me/${environment.whatsappNumber}` : '';
+  readonly bookvasUrl = environment.bookvasUrl;
 
   readonly suburb = signal<SuburbContent | null>(null);
   readonly otherSuburbs = signal<SuburbContent[]>([]);
@@ -93,7 +98,7 @@ export class SuburbPage implements OnInit, OnDestroy {
       provider: {
         '@type': 'ProfessionalService',
         name: 'ROGUETECHNOLOGIES (Pty) Ltd',
-        alternateName: 'RogueTech',
+        alternateName: 'ROGUETECHNOLOGIES',
         url: `${SITE_URL}/`,
         email: 'info@rogue-tech.co.za',
       },

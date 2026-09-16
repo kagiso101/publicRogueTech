@@ -34,7 +34,7 @@ export class GetStartedPage implements OnInit {
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'Get a Free Website Quote | RogueTech',
+      title: 'Get a Free Website Quote, Cape Town — ROGUETECHNOLOGIES',
       description:
         'Tell us about your project in five quick steps and get a tailored quote for your website, web app or SaaS build — free, no obligation.',
       path: '/get-started',

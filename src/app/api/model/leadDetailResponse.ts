@@ -34,6 +34,8 @@ export interface LeadDetailResponse {
     utmCampaign?: string;
     utmTerm?: string;
     utmContent?: string;
+    ipAddress?: string;
+    userAgent?: string;
     submittedAt?: string;
     contactedAt?: string;
     closedAt?: string;

@@ -16,7 +16,6 @@ export class Marquee {
     'Social Media',
     'Custom Web Apps',
     'SaaS Platforms',
-    'Client Dashboard',
     'Built in South Africa',
   ];
 

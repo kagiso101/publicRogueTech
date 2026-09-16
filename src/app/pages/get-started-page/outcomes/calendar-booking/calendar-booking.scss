@@ -105,3 +105,21 @@ h1 {
     color: var(--rt-red);
   }
 }
+.embed-fallback {
+  margin: var(--rt-space-lg) 0;
+  padding: var(--rt-space-lg);
+  border: 1px solid var(--rt-border-subtle);
+  border-radius: var(--rt-radius-md);
+  background: var(--rt-card);
+  text-align: left;
+
+  p {
+    margin: 0 0 var(--rt-space-md);
+    line-height: 1.6;
+    color: var(--rt-text);
+  }
+
+  a:not(.rt-btn) {
+    color: var(--rt-red);
+  }
+}

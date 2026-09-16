@@ -23,7 +23,7 @@ export class PricingArticlePage implements OnInit, OnDestroy {
   readonly faqs: ArticleFaq[] = [
     {
       q: 'How much does a 5-page website cost in Cape Town?',
-      a: 'Realistically R8,500 to R25,000 for professional custom work. Below that you are usually buying a template with your logo dropped in; above that you are usually paying agency overheads. At RogueTech a 5-page site falls between our Bronze (R8,500) and Silver (R22,000) packages depending on features like booking or content management.',
+      a: 'Realistically R8,500 to R25,000 for professional custom work. Below that you are usually buying a template with your logo dropped in; above that you are usually paying agency overheads. At ROGUETECHNOLOGIES a 5-page site falls between our Bronze (R8,500) and Silver (R22,000) packages depending on features like booking or content management.',
     },
     {
       q: 'Do I pay monthly for my website?',
@@ -50,7 +50,7 @@ export class PricingArticlePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     const path = '/website-design-prices-cape-town';
     this.seo.apply({
-      title: 'Website Design Prices Cape Town (2026) | RogueTech',
+      title: 'Website Design Prices Cape Town (2026) — Full Guide',
       description:
         'What websites actually cost in Cape Town: templates from R500, freelancers, agencies from R25k, and the subscription trap — honest numbers and what you get.',
       path,

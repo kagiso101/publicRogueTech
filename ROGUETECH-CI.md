@@ -24,17 +24,19 @@ Logo assets live in [public/images/logos/](public/images/logos/).
 
 | File | Description | Use |
 |------|-------------|-----|
-| `roguetech-final-logo.png` | Logomark + wordmark, white "ROGUE" / glowing red "TECH", on dark | **Primary.** Used in the navbar. For dark backgrounds. |
-| `RogueTech-logo.png` | Same lockup with dark-grey "ROGUE" | Alternate for mid-tone/light-grey backgrounds. |
-| `rogueTechLogo.png` | Transparent-background lockup, black "ROGUE" / red "TECH", **flat (no glow)** | Light backgrounds, print, documents. |
+| `roguetechnologies-logo-lockup.png` | Source lockup: "TR" monogram, silver "ROGUE" / red "TECHNOLOGIES" wordmark, transparent | Source of truth for the lockup. |
+| `logo-lockup.svg` | Flat-colour trace of the lockup (silver `#C9CCD1`, charcoal `#383840`, red `#E82018`) | **Primary.** Navbar and footer on dark backgrounds. |
+| `logo-lockup-800.png` | Raster lockup with the original gradients, 800px wide, transparent | Where the gradient version is wanted; the OG image is built from it. |
+| `roguetechnologies-logo.png` | Source monogram only, transparent | Source of truth for the mark. |
+| `logo.svg` / `logo-512.png` | Monogram only, flat SVG / transparent PNG | Favicons, app icons, tight spaces. |
 
 ### Anatomy
-- **Logomark:** an angular, blade-like "R" built from gunmetal-grey and red facets.
-- **Wordmark:** "ROGUE" in neutral (white or black depending on variant) +
+- **Logomark:** a "TR" monogram — a charcoal "T" under a red blade-like "R".
+- **Wordmark:** "ROGUE" in silver + "TECHNOLOGIES" in brand red — this two-tone split is a core brand signature.
   "TECH" always in brand red — this two-tone split is a core brand signature.
 
 ### Usage rules
-- Always keep "TECH" in red; never render the wordmark in a single flat color.
+- Always keep "TECHNOLOGIES" in red; never render the wordmark in a single flat color.
 - Preferred placement is on `--rt-black` (#080808) or `--rt-dark` (#0F0F0F) surfaces.
 - Maintain clear space around the lockup of at least the height of the "R" logomark.
 - Do not stretch, recolor, rotate, outline, or add drop shadows. The glow is baked

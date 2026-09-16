@@ -27,6 +27,9 @@ export interface LeadRequest {
     phone?: string;
     notes?: string;
     consentGiven: boolean;
+    /**
+     * Honeypot — leave empty. Non-empty submissions are silently discarded.
+     */
     website?: string;
     sourcePage?: string;
     utmSource?: string;

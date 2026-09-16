@@ -1,0 +1,32 @@
+<main class="legal">
+  <header class="legal-header">
+    <p class="eyebrow">Legal</p>
+    <h1>{{ doc.title }}</h1>
+    <p class="updated">Last updated {{ doc.updated }}</p>
+    <p class="intro">{{ doc.intro }}</p>
+  </header>
+
+  <div class="legal-body">
+    @for (section of doc.sections; track section.heading) {
+      <section>
+        <h2>{{ section.heading }}</h2>
+        @for (p of section.paragraphs ?? []; track $index) {
+          <p>{{ p }}</p>
+        }
+        @if (section.bullets?.length) {
+          <ul>
+            @for (b of section.bullets; track $index) {
+              <li>{{ b }}</li>
+            }
+          </ul>
+        }
+      </section>
+    }
+  </div>
+
+  <nav class="legal-nav" aria-label="Other legal documents">
+    <a routerLink="/legal/terms" routerLinkActive="active">Terms &amp; Conditions</a>
+    <a routerLink="/legal/privacy" routerLinkActive="active">Privacy Notice</a>
+    <a routerLink="/legal/cookies" routerLinkActive="active">Cookie Policy</a>
+  </nav>
+</main>

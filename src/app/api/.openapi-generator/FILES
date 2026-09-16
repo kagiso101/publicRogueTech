@@ -1,5 +1,4 @@
 .gitignore
-README.md
 api.base.service.ts
 api.module.ts
 api/adminLeadController.service.ts
@@ -7,7 +6,6 @@ api/api.ts
 api/leadController.service.ts
 configuration.ts
 encoder.ts
-git_push.sh
 index.ts
 model/leadDetailResponse.ts
 model/leadRequest.ts

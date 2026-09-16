@@ -3,7 +3,6 @@
   <div class="hero-grid"></div>
   <div class="hero-scan"></div>
   <canvas id="hero-canvas"></canvas>
-
   <div class="hero-content">
     <div class="hero-eyebrow">BUILT FOR BUSINESS GROWTH</div>
     <h1 class="hero-title">
@@ -14,24 +13,22 @@
       <span class="word w5"></span>
     </h1>
     <p class="hero-sub">
-      RogueTech engineers high-performance websites, digital platforms and growth systems that help businesses scale
+      ROGUETECHNOLOGIES engineers high-performance websites, digital platforms and growth systems that help businesses scale
       faster, operate smarter and stand out online.
     </p>
     <div class="hero-btns">
-      <a routerLink="/contact" class="btn-primary">Get Started</a>
+      <a routerLink="/get-started" class="btn-primary">Get Started</a>
       <a routerLink="/pricing" class="btn-outline">View Packages</a>
     </div>
   </div>
-
   <div class="hero-badge">
     <div class="badge-label">Status</div>
     <div class="badge-text"><span class="badge-dot"></span>Limited Client Openings</div>
   </div>
-
   <div class="hero-stats">
-    @for (stat of stats; track stat.id) {
+    @for (stat of stats; track stat.label) {
     <div class="stat">
-      <div class="stat-num"><span [id]="stat.id">0</span>{{ stat.suffix }}</div>
+      <div class="stat-num">{{ stat.value }}{{ stat.suffix }}</div>
       <div class="stat-label">{{ stat.label }}</div>
     </div>
     }

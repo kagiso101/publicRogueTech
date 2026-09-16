@@ -1,4 +1,5 @@
 @use '../../../../styles/tokens' as *;
+@use '../../../../styles/forms';
 
 .step {
   .eyebrow {
@@ -245,4 +246,9 @@
     margin-right: 8px;
     color: var(--rt-red);
   }
+}
+
+// Shared boxed controls + themed dropdown (styles/_forms.scss); appended last so it wins.
+.field {
+  @include forms.controls;
 }

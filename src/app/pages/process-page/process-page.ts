@@ -43,9 +43,9 @@ export class ProcessPage implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'Our Web Development Process | RogueTech',
+      title: 'Our Web Design Process, Cape Town — ROGUETECHNOLOGIES',
       description:
-        'How RogueTech takes you from first call to launched product: discovery, design, weekly demos and a client dashboard that shows progress every day.',
+        'How ROGUETECHNOLOGIES takes you from first call to launched product: discovery, design, weekly demos and written progress updates.',
       path: '/process',
     });
   }
@@ -84,10 +84,10 @@ export class ProcessPage implements OnInit, AfterViewInit {
       group: 'Onboarding',
       title: 'Project Kickoff',
       description:
-        'A 50% deposit is invoiced to begin work. Once received, you are onboarded into your project space — the home for everything related to your build.',
+        'A 50% deposit is invoiced to begin work. Once received, we hold a kick-off call and share the written project plan — schedule, milestones and what we need from you.',
       highlights: [
         '50% deposit invoiced',
-        'Access to your project space',
+        'Kick-off call and written project plan',
         'Asset and brand collection begins',
       ],
       duration: '1–2 days',
@@ -112,7 +112,7 @@ export class ProcessPage implements OnInit, AfterViewInit {
       group: 'Build',
       title: 'Development',
       description:
-        'The build phase. Your project comes to life through the project space, where you can review progress at any point. Major milestones require your approval before we move forward.',
+        'The build phase. You watch your project come to life through weekly demos and written updates, and major milestones require your approval before we move forward.',
       highlights: [
         'Regular progress updates',
         'Milestone-based approvals',
@@ -184,7 +184,7 @@ export class ProcessPage implements OnInit, AfterViewInit {
       icon: 'M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z M12 9a3 3 0 100 6 3 3 0 000-6z',
       title: 'No Black Holes',
       description:
-        'You see exactly what is happening at every stage. Your project space gives you live visibility into progress, decisions, and what needs your input — so you are never wondering where things stand.',
+        'You see exactly what is happening at every stage. Weekly demos and written updates cover progress, decisions and what needs your input — so you are never wondering where things stand.',
     },
     {
       icon: 'M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z',

@@ -1,5 +1,6 @@
 // ─── Consultation Modal ───
 @use '../../../styles/tokens' as *;
+@use '../../../styles/forms';
 
 .consult-modal {
   position: relative;
@@ -214,4 +215,9 @@
   .consult-modal {
     padding: var(--rt-space-lg);
   }
+}
+
+// Shared boxed controls + themed dropdown (styles/_forms.scss); appended last so it wins.
+.form-field {
+  @include forms.controls;
 }

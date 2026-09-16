@@ -12,8 +12,11 @@
         }
         <div class="hero-actions">
           <a routerLink="/get-started" class="btn-primary">Get a Free Quote</a>
-          <!-- TODO(Kagiso): swap for a wa.me/<number> link once the WhatsApp number is confirmed -->
-          <a href="mailto:info@rogue-tech.co.za" class="btn-outline" (click)="trackContact('email')">info&#64;rogue-tech.co.za</a>
+          @if (whatsappUrl) {
+            <a [href]="whatsappUrl" class="btn-outline" target="_blank" rel="noopener" (click)="trackContact('whatsapp')">WhatsApp us</a>
+          } @else {
+            <a href="mailto:info@rogue-tech.co.za" class="btn-outline" (click)="trackContact('email')">info&#64;rogue-tech.co.za</a>
+          }
         </div>
       </div>
     </section>
@@ -54,7 +57,7 @@
           }
           <div class="hero-actions">
             <a routerLink="/get-started" class="btn-primary">Start Your Project</a>
-            <a routerLink="/pricing" class="btn-outline">View Packages</a>
+            <a [href]="bookvasUrl" class="btn-outline" target="_blank" rel="noopener">See how Bookvas works</a>
           </div>
         </div>
       </section>
@@ -76,7 +79,7 @@
     <!-- ─── Related pages ─── -->
     <section class="industry-section related">
       <div class="container">
-        <h2>More from RogueTech</h2>
+        <h2>More from ROGUETECHNOLOGIES</h2>
         <ul class="related-links">
           @for (other of otherIndustries(); track other.slug) {
             <li><a [routerLink]="'/' + other.slug">{{ other.h1 }}</a></li>

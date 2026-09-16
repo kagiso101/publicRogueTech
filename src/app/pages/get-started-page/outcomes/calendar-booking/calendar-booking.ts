@@ -5,11 +5,13 @@ import {
   OnDestroy,
   PLATFORM_ID,
   inject,
+  signal,
   viewChild,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { LeadsFacade } from '../../../../store/leads/leads.facade';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'rt-calendar-booking',
@@ -23,10 +25,12 @@ export class CalendarBookingComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   readonly facade = inject(LeadsFacade);
 
-  // Cal.com namespace + link
-  // TODO: replace 'roguetech/strategy-call' with your actual Cal.com handle
+  // Cal.com namespace + link (the handle lives in environment.ts)
   readonly calNamespace = 'strategy-call';
-  readonly calLink = 'roguetech/strategy-call';
+  readonly calLink = environment.calLink;
+  readonly bookingUrl = `https://cal.com/${environment.calLink}`;
+  // Flips when the embed never mounts an iframe (script blocked, offline, error).
+  readonly embedFailed = signal(false);
 
   readonly embedContainer = viewChild<ElementRef<HTMLDivElement>>('calEmbed');
 
@@ -52,6 +56,9 @@ export class CalendarBookingComponent implements AfterViewInit, OnDestroy {
   private initCalEmbed(): void {
     const container = this.embedContainer()?.nativeElement;
     if (!container) return;
+    setTimeout(() => {
+      if (!container.isConnected || !container.querySelector('iframe')) this.embedFailed.set(true);
+    }, 8000);
 
     // Load Cal.com embed script once
     this.loadCalScript(() => {

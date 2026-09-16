@@ -52,7 +52,7 @@ export class PricingPage implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'Web Design Packages & Prices | RogueTech',
+      title: 'Website Design Prices Cape Town — Packages from R8,500',
       description:
         'Four transparent packages: Bronze R8,500, Silver R22,000, Gold R55,000, Platinum from R120,000. No hidden costs — see exactly what each tier includes.',
       path: '/pricing',

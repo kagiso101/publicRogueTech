@@ -22,7 +22,7 @@ export class Faq {
     },
     {
       q: 'Do I own my website?',
-      a: 'Yes — always. RogueTech owns no part of your site. Your domain, your code, your content. We build and maintain it; you own it outright.',
+      a: 'Yes — always. ROGUETECHNOLOGIES owns no part of your site. Your domain, your code, your content. We build and maintain it; you own it outright.',
     },
     {
       q: 'Do I have to commit to anything ongoing?',
@@ -33,12 +33,12 @@ export class Faq {
       a: 'Absolutely. Most clients start on Bronze or Silver and grow into Gold. You can upgrade at any time — no penalty.',
     },
     {
-      q: 'I\'m not technical at all — is RogueTech for me?',
-      a: 'That\'s exactly who we built this for. You don\'t need to understand any of it. We handle everything and keep you in the loop through your client dashboard.',
+      q: 'I\'m not technical at all — is ROGUETECHNOLOGIES for me?',
+      a: 'That\'s exactly who we built this for. You don\'t need to understand any of it. We handle everything and keep you in the loop with weekly demos and plain-language updates.',
     },
     {
-      q: 'Do you work outside of Johannesburg?',
-      a: 'Yes — we work 100% remotely across South Africa. Your location doesn\'t matter at all.',
+      q: 'Do you work outside of Cape Town?',
+      a: 'Yes. We\'re based in Cape Town and work remotely with clients across South Africa — your location doesn\'t matter at all.',
     },
   ];
 

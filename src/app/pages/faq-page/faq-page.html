@@ -110,7 +110,7 @@
 <section class="faq-list-section">
 
   @if (!hasResults()) {
-    <div class="empty-state rt-reveal">
+    <div class="empty-state">
       <div class="empty-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.5"
@@ -133,7 +133,7 @@
   } @else {
 
     @for (group of groupedFaqs(); track group.category.id) {
-      <div class="faq-group rt-reveal">
+      <div class="faq-group">
         <div class="group-header">
           <div class="group-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -184,7 +184,7 @@
       Every business is different. If your question is not on this page,
       send it to us directly — we usually respond within 24 hours.
     </p>
-    <a routerLink="/contact" class="prompt-cta">
+    <button type="button" class="prompt-cta" (click)="askDirectly()">
       Ask Us Directly
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2"
@@ -192,7 +192,7 @@
         <line x1="5" y1="12" x2="19" y2="12"/>
         <polyline points="12 5 19 12 12 19"/>
       </svg>
-    </a>
+    </button>
   </div>
 </section>
 

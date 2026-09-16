@@ -84,7 +84,7 @@
 <!-- ─── SERVICES DETAIL ─── -->
 <section class="services-detail">
   @for (service of services; track service.name; let i = $index) {
-    <article class="service-block rt-reveal"
+    <article class="service-block rt-reveal" [id]="service.id"
              [class.alt]="i % 2 === 1"
              [style.transition-delay]="(i * 0.05) + 's'">
 
@@ -154,6 +154,20 @@
 
     </article>
   }
+</section>
+
+<!-- ─── PRODUCT ─── -->
+<section class="product-section rt-reveal" id="bookvas">
+  <div class="product-inner">
+    <div class="section-eyebrow">Our Product</div>
+    <h2>Bookvas — deposit-secured online bookings</h2>
+    <p>
+      We build software for ourselves too. Bookvas lets salons, practitioners and other appointment
+      businesses take bookings online, secured with a deposit, so no-shows stop costing money. It is
+      the booking layer behind the sites we build for service businesses.
+    </p>
+    <a class="service-cta" [href]="bookvasUrl" target="_blank" rel="noopener">See Bookvas →</a>
+  </div>
 </section>
 
 <app-cta></app-cta>

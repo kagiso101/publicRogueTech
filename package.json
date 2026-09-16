@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && node scripts/generate-sitemap.mjs",
+    "build": "ng build && node scripts/generate-sitemap.mjs && node scripts/generate-headers.mjs",
     "watch": "ng build --watch --configuration development",
     "generate:api": "openapi-generator-cli generate -i http://localhost:8081/v3/api-docs -g typescript-angular -o src/app/api --additional-properties=stringEnums=true,serviceSuffix=Service",
     "test": "ng test"

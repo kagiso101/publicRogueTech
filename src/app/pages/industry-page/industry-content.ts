@@ -34,7 +34,7 @@ export interface IndustryContent {
 export const INDUSTRIES: IndustryContent[] = [
   {
     slug: 'websites-for-salons',
-    seoTitle: 'Websites for Salons South Africa | RogueTech',
+    seoTitle: 'Websites for Salons in Cape Town — Booking-Ready Sites',
     seoDescription:
       'Websites for salons and beauty businesses in South Africa from R8,500 — portfolio, price list and deposit-secured online booking that actually kills no-shows.',
     h1: 'Websites for Salons & Beauty Businesses in South Africa',
@@ -74,7 +74,7 @@ export const INDUSTRIES: IndustryContent[] = [
     faqs: [
       {
         q: 'How much does a salon website cost in South Africa?',
-        a: 'From R8,500 once-off with RogueTech for a professional custom site with gallery, price list and booking call-to-action. Bigger salons with multiple stylists and service menus typically land around R22,000. You own the site outright — no monthly rental.',
+        a: 'From R8,500 once-off with ROGUETECHNOLOGIES for a professional custom site with gallery, price list and booking call-to-action. Bigger salons with multiple stylists and service menus typically land around R22,000. You own the site outright — no monthly rental.',
       },
       {
         q: 'Can clients book appointments on the website?',
@@ -92,7 +92,7 @@ export const INDUSTRIES: IndustryContent[] = [
   },
   {
     slug: 'websites-for-wellness',
-    seoTitle: 'Websites for Wellness Practices | RogueTech',
+    seoTitle: 'Websites for Wellness Practices in Cape Town — Booking-Ready',
     seoDescription:
       'Websites for spas, therapists and wellness practitioners in South Africa from R8,500 — credibility, clear pricing and online booking that respects your session time.',
     h1: 'Websites for Spas, Therapists & Wellness Practitioners',
@@ -149,7 +149,7 @@ export const INDUSTRIES: IndustryContent[] = [
   },
   {
     slug: 'booking-websites',
-    seoTitle: 'Booking Websites for Service Businesses | RogueTech',
+    seoTitle: 'Booking Websites for Service Businesses, Cape Town',
     seoDescription:
       'Booking websites for South African service businesses: your site plus Bookvas deposit-secured online bookings as one offer. Kill no-shows and WhatsApp scheduling chaos.',
     h1: 'Booking Websites for Service Businesses',
@@ -205,7 +205,7 @@ export const INDUSTRIES: IndustryContent[] = [
       },
       {
         q: 'Do I own the website?',
-        a: 'Yes — domain, design, code and content, all in your name, like every RogueTech build. Bookvas runs as a service behind your site; the site itself is yours outright.',
+        a: 'Yes — domain, design, code and content, all in your name, like every ROGUETECHNOLOGIES build. Bookvas runs as a service behind your site; the site itself is yours outright.',
       },
     ],
   },

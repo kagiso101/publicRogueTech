@@ -2,6 +2,7 @@ import {
   Component,
   AfterViewInit,
   ElementRef,
+  OnDestroy,
   OnInit,
   PLATFORM_ID,
   Inject,
@@ -9,10 +10,12 @@ import {
   computed,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Cta } from '../../features/home/cta/cta';
 import { SeoService } from '../../shared/services/seo.service';
+import { ConsultationModalService } from '../../shared/services/consultation-modal.service';
+
+const FAQ_JSON_LD_ID = 'faq-page-schema';
 
 interface FaqItem {
   q: string;
@@ -31,24 +34,40 @@ interface FaqCategory {
 @Component({
   selector: 'rt-faq-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, Cta],
+  imports: [FormsModule, Cta],
   templateUrl: './faq-page.html',
   styleUrl: './faq-page.scss',
 })
-export class FaqPage implements OnInit, AfterViewInit {
+export class FaqPage implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private el: ElementRef,
-    private seo: SeoService
+    private seo: SeoService,
+    private consultationModal: ConsultationModalService
   ) {}
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'Web Development FAQ | RogueTech',
+      title: 'Web Design FAQ, Cape Town — ROGUETECHNOLOGIES',
       description:
-        'Answers on pricing, timelines, ownership, hosting and support for websites and web apps built by RogueTech in Cape Town.',
+        'Answers on pricing, timelines, ownership, hosting and support for websites and web apps built by ROGUETECHNOLOGIES in Cape Town.',
       path: '/faq',
     });
+    this.seo.setJsonLd(FAQ_JSON_LD_ID, {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: this.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.seo.removeJsonLd(FAQ_JSON_LD_ID);
+    this.revealObserver?.disconnect();
+    this.mutationObserver?.disconnect();
   }
 
   searchQuery = signal('');
@@ -136,7 +155,7 @@ export class FaqPage implements OnInit, AfterViewInit {
     },
     {
       q: 'How involved do I need to be?',
-      a: 'You approve at five key milestones — proposal, design, build progress, QA review, and final launch. Between those, we keep you updated through your project space without overwhelming you.',
+      a: 'You approve at five key milestones — proposal, design, build progress, QA review, and final launch. Between those, we keep you updated with weekly demos and written updates without overwhelming you.',
       category: 'process',
     },
     {
@@ -153,7 +172,7 @@ export class FaqPage implements OnInit, AfterViewInit {
     // ─── OWNERSHIP ───
     {
       q: 'Do I own my website?',
-      a: 'Yes — always. RogueTech owns no part of your site. Code, content, designs, domain, hosting accounts — all yours from day one. If you ever want to take your project elsewhere, you take everything with you.',
+      a: 'Yes — always. ROGUETECHNOLOGIES owns no part of your site. Code, content, designs, domain, hosting accounts — all yours from day one. If you ever want to take your project elsewhere, you take everything with you.',
       category: 'ownership',
       featured: true,
     },
@@ -202,18 +221,18 @@ export class FaqPage implements OnInit, AfterViewInit {
 
     // ─── WORKING TOGETHER ───
     {
-      q: 'Do you work outside of Johannesburg?',
-      a: 'Yes — we work 100% remotely across South Africa and internationally. Your location does not matter. All collaboration happens through your project space, video calls, and email.',
+      q: 'Do you work outside of Cape Town?',
+      a: 'Yes. We are based in Cape Town and work remotely with clients across South Africa and internationally. Your location does not matter; collaboration happens over video calls, email and weekly written updates.',
       category: 'working',
     },
     {
-      q: 'I am not technical at all — is RogueTech for me?',
-      a: 'That is exactly who we built this for. You do not need to understand any of it. We handle everything and keep you in the loop through your project space without overwhelming you with jargon.',
+      q: 'I am not technical at all — is ROGUETECHNOLOGIES for me?',
+      a: 'That is exactly who we built this for. You do not need to understand any of it. We handle everything and keep you in the loop with weekly demos and plain-language updates, without overwhelming you with jargon.',
       category: 'working',
     },
     {
       q: 'How do we communicate during the project?',
-      a: 'Primary communication is through your project space — a dedicated dashboard for your project. We also schedule video calls at key milestones and respond to email within 24 business hours.',
+      a: 'Primary communication is email plus a written update every week. We also schedule video calls at key milestones and respond to email within 24 business hours.',
       category: 'working',
     },
     {
@@ -276,6 +295,10 @@ export class FaqPage implements OnInit, AfterViewInit {
     this.openFaqId.update((current) => (current === id ? null : id));
   }
 
+  askDirectly(): void {
+    this.consultationModal.open();
+  }
+
   clearSearch(): void {
     this.searchQuery.set('');
     this.activeCategory.set('all');
@@ -291,17 +314,32 @@ export class FaqPage implements OnInit, AfterViewInit {
     }
   }
 
+  private revealObserver?: IntersectionObserver;
+  private mutationObserver?: MutationObserver;
+
   private initScrollReveal(): void {
-    const observer = new IntersectionObserver(
+    this.revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('rt-visible');
+          if (e.isIntersecting) {
+            e.target.classList.add('rt-visible');
+            this.revealObserver?.unobserve(e.target);
+          }
         });
       },
       { threshold: 0.1 }
     );
+    this.observeReveals();
+
+    // Sections such as "Most Asked" are conditionally rendered, so new
+    // .rt-reveal elements appear after filtering. Re-observe them as they land.
+    this.mutationObserver = new MutationObserver(() => this.observeReveals());
+    this.mutationObserver.observe(this.el.nativeElement, { childList: true, subtree: true });
+  }
+
+  private observeReveals(): void {
     this.el.nativeElement
-      .querySelectorAll('.rt-reveal')
-      .forEach((el: Element) => observer.observe(el));
+      .querySelectorAll('.rt-reveal:not(.rt-visible)')
+      .forEach((el: Element) => this.revealObserver?.observe(el));
   }
 }

@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+import { AnalyticsService } from '../../services/analytics.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LeadControllerService } from '../../../api/api/leadController.service';
 import {
@@ -27,6 +29,7 @@ export class ConsultationModalComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly leadService = inject(LeadControllerService);
   private readonly router = inject(Router);
+  private readonly analytics = inject(AnalyticsService);
   readonly activeModal = inject(NgbActiveModal);
 
   /** Optionally set by ConsultationModalService before first render. */
@@ -38,7 +41,7 @@ export class ConsultationModalComponent implements OnInit {
   readonly calendarRequired = signal(false);
 
   /** Same Cal.com event as the wizard's calendar-booking outcome. */
-  readonly bookingUrl = 'https://cal.com/roguetech/strategy-call';
+  readonly bookingUrl = `https://cal.com/${environment.calLink}`;
 
   readonly projectTypeOptions = [
     { value: LeadRequestProjectTypeEnum.Unsure, label: 'Not sure yet — let’s talk' },
@@ -119,6 +122,7 @@ export class ConsultationModalComponent implements OnInit {
           this.submitting.set(false);
           this.submitted.set(true);
           this.calendarRequired.set(data?.calendarRequired === true);
+          this.analytics.event('generate_lead', { source: 'consultation_modal', tier: String(data?.tier ?? '') });
         });
       },
       error: () => {

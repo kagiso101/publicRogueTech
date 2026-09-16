@@ -44,8 +44,8 @@ export class Services {
              </svg>`,
     },
     {
-      title: 'Client Project Dashboard',
-      desc: 'Log in to app.rogue-tech.co.za and track every milestone. See exactly what we\'re doing, every day.',
+      title: 'Client Project Space',
+      desc: 'A private space to follow every milestone is launching soon. Until then you get weekly demos and a written progress update — no black holes.',
       num: '04',
       icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 48 48">
                <rect x="6" y="14" width="36" height="24" rx="3"/>

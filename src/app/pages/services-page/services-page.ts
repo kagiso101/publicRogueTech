@@ -12,9 +12,12 @@ import { Cta } from '../../features/home/cta/cta';
 import { ConsultationModalService } from '../../shared/services/consultation-modal.service';
 import { SeoService } from '../../shared/services/seo.service';
 import { LeadRequestProjectTypeEnum } from '../../api/model/leadRequest';
+import { environment } from '../../../environments/environment';
 
 interface ServiceOffering {
   num: string;
+  /** Anchor id, linked from the footer (/services#id). */
+  id: string;
   eyebrow: string;
   name: string;
   tagline: string;
@@ -47,9 +50,9 @@ export class ServicesPage implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'Web Development Services Cape Town | RogueTech',
+      title: 'Website Design, Web Apps & SaaS Development, Cape Town',
       description:
-        'Website design, custom web apps, SaaS builds, consulting and care plans. Transparent pricing from R8,500 — see what RogueTech can build for you.',
+        'Website design, custom web apps, SaaS builds, consulting and care plans. Transparent pricing from R8,500 — see what ROGUETECHNOLOGIES can build for you.',
       path: '/services',
     });
   }
@@ -58,9 +61,13 @@ export class ServicesPage implements OnInit, AfterViewInit {
     this.consultationModal.open(service.consultationType);
   }
 
+  readonly bookvasUrl = environment.bookvasUrl;
+
+
   services: ServiceOffering[] = [
     {
       num: '01',
+      id: 'websites',
       eyebrow: 'Marketing & Brochure Sites',
       name: 'Custom Websites',
       tagline:
@@ -85,6 +92,7 @@ export class ServicesPage implements OnInit, AfterViewInit {
     },
     {
       num: '02',
+      id: 'web-apps',
       eyebrow: 'Custom Web Applications',
       name: 'Web Apps',
       tagline:
@@ -110,6 +118,7 @@ export class ServicesPage implements OnInit, AfterViewInit {
     },
     {
       num: '03',
+      id: 'saas',
       eyebrow: 'SaaS Platforms',
       name: 'Custom SaaS Development',
       tagline:
@@ -135,6 +144,7 @@ export class ServicesPage implements OnInit, AfterViewInit {
     },
     {
       num: '04',
+      id: 'consulting',
       eyebrow: 'Strategy & Advisory',
       name: 'Digital Consulting',
       tagline: 'Get the right answers before writing a line of code.',
@@ -159,6 +169,7 @@ export class ServicesPage implements OnInit, AfterViewInit {
     },
     {
       num: '05',
+      id: 'care-plans',
       eyebrow: 'Ongoing Services',
       name: 'Care, Growth & Marketing',
       tagline:

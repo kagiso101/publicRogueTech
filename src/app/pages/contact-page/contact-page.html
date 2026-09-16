@@ -1,0 +1,65 @@
+<main class="contact">
+  <header class="contact-header">
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk about <span>your business.</span></h1>
+    <p class="intro">
+      One person reads every message. Tell us what you are trying to do and you will hear
+      back within 24 business hours, with a straight answer.
+    </p>
+  </header>
+
+  <div class="contact-grid">
+    <article class="contact-card">
+      <p class="card-label">Email</p>
+      <a class="card-primary" href="mailto:{{ email }}" (click)="trackContact('email')">{{ email }}</a>
+      <p class="card-note">Best for detailed briefs, attachments and anything you want in writing.</p>
+    </article>
+
+    @if (whatsappUrl) {
+      <article class="contact-card">
+        <p class="card-label">WhatsApp</p>
+        <a class="card-primary" [href]="whatsappUrl" target="_blank" rel="noopener" (click)="trackContact('whatsapp')">
+          Message us on WhatsApp
+        </a>
+        <p class="card-note">Quick questions, quick answers.</p>
+      </article>
+    }
+
+    <article class="contact-card">
+      <p class="card-label">Free consultation</p>
+      <button type="button" class="card-primary as-button" (click)="openConsultation()">
+        Book a free consultation
+      </button>
+      <p class="card-note">A short form, then a 30-minute conversation. No commitment.</p>
+    </article>
+
+    <article class="contact-card">
+      <p class="card-label">Get a quote</p>
+      <a class="card-primary" routerLink="/get-started">Start the five-step wizard</a>
+      <p class="card-note">Answer a few questions about your project and get a tailored recommendation.</p>
+    </article>
+  </div>
+
+  <section class="contact-details">
+    <h2>Company details</h2>
+    <dl>
+      <div>
+        <dt>Registered name</dt>
+        <dd>ROGUETECHNOLOGIES (Pty) Ltd</dd>
+      </div>
+      <div>
+        <dt>Registration number</dt>
+        <dd>2026/428113/07</dd>
+      </div>
+      <div>
+        <dt>Based in</dt>
+        <dd>Cape Town, South Africa — working with clients across the country</dd>
+      </div>
+    </dl>
+    <p class="details-links">
+      <a routerLink="/pricing">See packages and prices</a>
+      <a routerLink="/process">How a project runs</a>
+      <a routerLink="/faq">Frequently asked questions</a>
+    </p>
+  </section>
+</main>

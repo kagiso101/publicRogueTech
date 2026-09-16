@@ -11,3 +11,7 @@
   to = "https://rogue-tech.co.za/:splat"
   status = 301
   force = true
+
+# Security headers (including the Content-Security-Policy) are NOT declared here:
+# scripts/generate-headers.mjs writes them to dist/.../_headers after every build,
+# because the CSP allow-lists the exact inline scripts Angular's prerender emits.

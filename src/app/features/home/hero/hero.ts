@@ -22,16 +22,15 @@ export class Hero implements AfterViewInit, OnDestroy {
   private mouseMoveListener: ((e: MouseEvent) => void) | null = null;
   private glitchTimeout: ReturnType<typeof setTimeout> | null = null;
 
+  // Rendered as plain text so the prerendered HTML carries the real values.
   stats = [
-    { id: 'counter-packages', target: 4, suffix: '+', label: 'Packages Available' },
-    { id: 'counter-ownership', target: 100, suffix: '%', label: 'Client Ownership' },
-    { id: 'counter-response', target: 24, suffix: 'h', label: 'Avg. Response Time' },
+    { value: 4, suffix: '', label: 'Packages Available' },
+    { value: 100, suffix: '%', label: 'Client Ownership' },
   ];
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     this.initCanvas();
-    this.initCounters();
     this.initTextAnimations();
     this.initScrollReveal();
   }
@@ -147,23 +146,6 @@ export class Hero implements AfterViewInit, OnDestroy {
     document.querySelectorAll('.rt-reveal').forEach((el) => observer.observe(el));
   }
 
-  private initCounters(): void {
-    this.stats.forEach(({ id, target }) => {
-      const el = this.el.nativeElement.querySelector(`#${id}`);
-      if (!el) return;
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          el.textContent = String(target);
-          clearInterval(timer);
-          return;
-        }
-        el.textContent = String(Math.floor(current));
-      }, 16);
-    });
-  }
 
   // private initCanvas(): void {
   //   const section = this.el.nativeElement as HTMLElement;
@@ -476,7 +458,7 @@ export class Hero implements AfterViewInit, OnDestroy {
       const fontSize = 14;
       const cols = Math.floor(W() / fontSize);
       const drops: number[] = Array(cols).fill(0).map(() => Math.random() * -100);
-      const matrixChars = 'ROGUETECH01∆∑√∞アイウエオ</>{}#@$%'.split('');
+      const matrixChars = 'ROGUETECHNOLOGIES01∆∑√∞アイウエオ</>{}#@$%'.split('');
 
       // ── HEX GRID ──
       interface Hex {

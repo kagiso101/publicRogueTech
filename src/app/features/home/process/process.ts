@@ -28,7 +28,7 @@ export class Process {
     {
       num: '03',
       title: 'Build',
-      desc: 'Development with regular updates and milestone approvals through your project space.',
+      desc: 'Development with weekly demos, written updates and milestone approvals.',
     },
     {
       num: '04',

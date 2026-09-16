@@ -1,0 +1,109 @@
+@use '../../styles/tokens' as *;
+
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: calc(var(--rt-nav-height) + var(--rt-space-xl)) var(--rt-space-lg) var(--rt-space-xl);
+  color: var(--rt-text);
+  font-family: var(--rt-font-body);
+}
+
+.legal-header {
+  border-bottom: 1px solid var(--rt-border-subtle);
+  padding-bottom: var(--rt-space-lg);
+  margin-bottom: var(--rt-space-xl);
+
+  .eyebrow {
+    font-family: var(--rt-font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rt-red);
+    margin: 0 0 var(--rt-space-sm);
+  }
+
+  h1 {
+    font-family: var(--rt-font-display);
+    font-size: clamp(36px, 6vw, 56px);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin: 0 0 var(--rt-space-sm);
+  }
+
+  .updated {
+    font-size: 13px;
+    color: var(--rt-text-muted);
+    margin: 0 0 var(--rt-space-md);
+  }
+
+  .intro {
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.legal-body {
+  section + section {
+    margin-top: var(--rt-space-xl);
+  }
+
+  h2 {
+    font-family: var(--rt-font-ui);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 var(--rt-space-md);
+  }
+
+  p,
+  li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--rt-text);
+  }
+
+  p {
+    margin: 0 0 var(--rt-space-md);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  li + li {
+    margin-top: var(--rt-space-sm);
+  }
+
+  li::marker {
+    color: var(--rt-red);
+  }
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rt-space-md);
+  margin-top: var(--rt-space-xl);
+  padding-top: var(--rt-space-lg);
+  border-top: 1px solid var(--rt-border-subtle);
+
+  a {
+    font-family: var(--rt-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rt-text-muted);
+    text-decoration: none;
+    transition: var(--rt-transition);
+
+    &:hover,
+    &.active {
+      color: var(--rt-white);
+    }
+  }
+}

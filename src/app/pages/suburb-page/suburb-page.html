@@ -12,8 +12,11 @@
         }
         <div class="hero-actions">
           <a routerLink="/get-started" class="btn-primary">Get a Free Quote</a>
-          <!-- TODO(Kagiso): swap for a wa.me/<number> link once the WhatsApp number is confirmed -->
-          <a href="mailto:info@rogue-tech.co.za" class="btn-outline" (click)="trackContact('email')">info&#64;rogue-tech.co.za</a>
+          @if (whatsappUrl) {
+            <a [href]="whatsappUrl" class="btn-outline" target="_blank" rel="noopener" (click)="trackContact('whatsapp')">WhatsApp us</a>
+          } @else {
+            <a href="mailto:info@rogue-tech.co.za" class="btn-outline" (click)="trackContact('email')">info&#64;rogue-tech.co.za</a>
+          }
         </div>
       </div>
     </section>
@@ -79,7 +82,7 @@
     <section class="suburb-section areas">
       <div class="container">
         <h2>Areas we serve</h2>
-        <p>RogueTech builds websites for businesses across the Blaauwberg corridor:</p>
+        <p>ROGUETECHNOLOGIES builds websites for businesses across the Blaauwberg corridor:</p>
         <ul class="area-links">
           @for (other of otherSuburbs(); track other.slug) {
             <li><a [routerLink]="'/web-design-' + other.slug">Website Design {{ other.name }}</a></li>

@@ -33,7 +33,7 @@ export const SUBURBS: SuburbContent[] = [
   {
     slug: 'table-view',
     name: 'Table View',
-    seoTitle: 'Website Design Table View | RogueTech',
+    seoTitle: 'Web Design Table View, Cape Town — Websites from R8,500',
     seoDescription:
       'Website design in Table View from R8,500. Local Cape Town developers building sites that bring in customers for salons, trades, fitness and food businesses.',
     intro: [
@@ -60,7 +60,7 @@ export const SUBURBS: SuburbContent[] = [
   {
     slug: 'parklands',
     name: 'Parklands',
-    seoTitle: 'Website Design Parklands | RogueTech',
+    seoTitle: 'Web Design Parklands, Cape Town — Websites from R8,500',
     seoDescription:
       'Website design in Parklands from R8,500. Websites for the schools, medical practices, home services and family businesses serving Cape Town’s fastest-growing suburb.',
     intro: [
@@ -87,7 +87,7 @@ export const SUBURBS: SuburbContent[] = [
   {
     slug: 'bloubergstrand',
     name: 'Bloubergstrand',
-    seoTitle: 'Website Design Bloubergstrand | RogueTech',
+    seoTitle: 'Web Design Bloubergstrand, Cape Town — Websites from R8,500',
     seoDescription:
       'Website design in Bloubergstrand from R8,500. Direct-booking websites for guesthouses, restaurants, surf schools and tourism businesses on the Blouberg beachfront.',
     intro: [
@@ -114,7 +114,7 @@ export const SUBURBS: SuburbContent[] = [
   {
     slug: 'milnerton',
     name: 'Milnerton',
-    seoTitle: 'Website Design Milnerton | RogueTech',
+    seoTitle: 'Web Design Milnerton, Cape Town — Websites from R8,500',
     seoDescription:
       'Website design in Milnerton from R8,500. Quote-generating websites for the trades, suppliers, marine and B2B businesses of Milnerton and Montague Gardens.',
     intro: [
@@ -141,7 +141,7 @@ export const SUBURBS: SuburbContent[] = [
   {
     slug: 'sunningdale',
     name: 'Sunningdale',
-    seoTitle: 'Website Design Sunningdale | RogueTech',
+    seoTitle: 'Web Design Sunningdale, Cape Town — Websites from R8,500',
     seoDescription:
       'Website design in Sunningdale from R8,500. Professional websites for the consultants, practitioners and home-based businesses of Sunningdale and Sandown.',
     intro: [
@@ -163,7 +163,7 @@ export const SUBURBS: SuburbContent[] = [
       ],
     },
     localLine:
-      'We are neighbours, effectively — RogueTech works across the Blaauwberg corridor and meets clients in person, whether that is your home office or a coffee shop in Sandown.',
+      'We are neighbours, effectively — ROGUETECHNOLOGIES works across the Blaauwberg corridor and meets clients in person, whether that is your home office or a coffee shop in Sandown.',
   },
 ];
 

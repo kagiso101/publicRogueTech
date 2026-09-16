@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.apply({
-      title: 'RogueTech | Web Development & Custom Software, Cape Town',
+      title: 'Web Design & Custom Software, Cape Town — ROGUETECHNOLOGIES',
       description:
         'Websites and custom software for South African businesses. Packages from R8,500 — get online fast with a site that actually brings in customers.',
       path: '/',

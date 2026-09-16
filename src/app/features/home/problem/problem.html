@@ -1,5 +1,4 @@
 <section id="problem" class="problem-section">
-
   <div class="problem-header rt-reveal">
     <div class="section-eyebrow">The Problem</div>
     <h2 class="section-title">
@@ -8,7 +7,6 @@
   </div>
 
   <div class="problem-grid">
-
     <div class="problem-cards">
       @for (problem of problems; track problem.num; let i = $index) {
         <div class="problem-card rt-reveal" [class]="'rt-delay-' + (i + 1)">
@@ -20,7 +18,6 @@
     </div>
 
     <div class="problem-visual rt-reveal rt-delay-2">
-
       <!-- Outer spinning ring -->
       <div class="outer-ring">
         <div class="outer-ring-inner"></div>
@@ -52,21 +49,18 @@
                   stroke="rgba(204,0,0,0.15)"
                   stroke-width="14"/>
               </svg>
-
               <div class="stat-content">
                 <div class="stat-value">
-                  <span class="stat-counter">0</span>
+                  <span class="stat-counter">{{ stat.value }}</span>
                   <span class="stat-suffix">{{ stat.suffix }}</span>
                 </div>
                 <div class="stat-label">{{ stat.label }}</div>
+                <div class="stat-source">Source: {{ stat.source }}</div>
               </div>
             </div>
           }
         </div>
-
       </div>
     </div>
-
   </div>
-
 </section>
